@@ -9,7 +9,6 @@
             PrintOptions();
             var option = short.Parse(Console.ReadLine());
         }
-
         public static void PrintCanvas()
         {
             PrintHorizontalLine();
@@ -17,7 +16,7 @@
             {
                 Console.Write("|");
 
-                for (int line = 0; line <= 30; line++)
+                for (int line = 0; line <= 35; line++)
                     Console.Write(" ");
 
                 Console.Write("|");
@@ -40,8 +39,11 @@
             Console.WriteLine("3 - Carros disponíveis");
             Console.SetCursorPosition(2, 8);
             Console.WriteLine("4 - Carros vendidos");
+            // TODO?
+            // Para listar menor/maior valor usar o LINQ
+            // https://docs.microsoft.com/pt-br/dotnet/csharp/linq/write-linq-queries
             Console.SetCursorPosition(2, 9);
-            Console.WriteLine("5 - Carros disponíveis");
+            Console.WriteLine("5 - Histórico de transferências");
             Console.SetCursorPosition(2, 11);
             Console.WriteLine("0 - Sair");
 
@@ -52,7 +54,7 @@
         {
             Console.Write("+");
 
-            for (int i = 0; i <= 30; i++)
+            for (int i = 0; i <= 35; i++)
                 System.Console.Write("-");
 
             Console.Write("+");

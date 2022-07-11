@@ -2,12 +2,15 @@
 {
     public class Vehicle
     {
+        // TODO:
+        // Pesquisar sobre init pra strings
+        // https://docs.microsoft.com/pt-br/dotnet/csharp/language-reference/proposals/csharp-9.0/init
         public Guid FrameNumber { get; set; }
         public DateTime FabricationDate { get; set; }
         public string Name { get; set; }
         public string Plate { get; set; }
         public decimal Value { get; set; }
-        public string BuyerCPF { get; set; }
+        private int? BuyerCPF { get; set; }
         public string Color { get; set; }
         public Vehicle(DateTime fabricationDate,
                        string name,
@@ -20,7 +23,6 @@
             Name = name;
             Plate = plate;
             Value = value;
-            BuyerCPF = "0";
             Color = color;
         }
         public void SellVehicle()
