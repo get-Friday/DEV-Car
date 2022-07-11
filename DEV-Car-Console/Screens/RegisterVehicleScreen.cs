@@ -25,7 +25,7 @@ namespace DEV_Car_Console.Screens
             Console.WriteLine("3 - Caminhonete");
 
             Console.SetCursorPosition(2, 11);
-            Console.WriteLine("0 - Voltar");
+            Console.WriteLine("Pressione outra tecla para voltar");
 
             Console.SetCursorPosition(2, 14);
             Console.Write("Opção selecionada: ");

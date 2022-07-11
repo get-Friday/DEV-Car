@@ -15,7 +15,7 @@ namespace DEV_Car_Console.Screens
 
             switch (option)
             {
-                case 1: RegisterVehicleScreen.Start(vehicles, transferHistory); break;
+                case 1: RegisterVehicleScreen.Start(vehicles, transferHistory); Start(vehicles, transferHistory); break;
                 default: break;
             }
 
