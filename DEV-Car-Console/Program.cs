@@ -1,2 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using DEV_Car_Console.Screens;
+
+namespace DEV_Car_Console;
+class Program
+{
+    static void Main(string[] args)
+    {
+        MenuScreen.Start();
+    }
+}
