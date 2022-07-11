@@ -2,7 +2,7 @@
 {
     public class Vehicle
     {
-        public Guid ChassiNumber { get; set; }
+        public Guid FrameNumber { get; set; }
         public DateTime FabricationDate { get; set; }
         public string Name { get; set; }
         public string Plate { get; set; }
@@ -15,7 +15,7 @@
                        decimal value,
                        string color)
         {
-            ChassiNumber = Guid.NewGuid();
+            FrameNumber = Guid.NewGuid();
             FabricationDate = fabricationDate;
             Name = name;
             Plate = plate;
