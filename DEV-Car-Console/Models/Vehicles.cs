@@ -1,4 +1,4 @@
-﻿namespace DEV_Car_Console
+﻿namespace DEV_Car_Console.Models
 {
     public class Vehicle
     {
@@ -6,7 +6,7 @@
         public DateTime FabricationDate { get; set; }
         public string Name { get; set; }
         public string Plate { get; set; }
-        public Decimal Value { get; set; }
+        public decimal Value { get; set; }
         public string BuyerCPF { get; set; }
         public string Color { get; set; }
         public Vehicle(DateTime fabricationDate,

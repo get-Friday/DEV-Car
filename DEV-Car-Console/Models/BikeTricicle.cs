@@ -1,4 +1,4 @@
-﻿namespace DEV_Car_Console
+﻿namespace DEV_Car_Console.Models
 {
     public class BikeTricicle : Vehicle
     {

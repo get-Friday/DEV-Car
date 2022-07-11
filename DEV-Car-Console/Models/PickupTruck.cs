@@ -1,4 +1,4 @@
-﻿namespace DEV_Car_Console
+﻿namespace DEV_Car_Console.Models
 {
     internal class PickupTruck : Vehicle
     {
