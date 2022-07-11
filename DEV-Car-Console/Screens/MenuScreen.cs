@@ -1,13 +1,24 @@
-﻿namespace DEV_Car_Console.Screens
+﻿using DEV_Car_Console.Repository;
+
+namespace DEV_Car_Console.Screens
 {
     public static class MenuScreen
     {
-        public static void Start()
+        public static void Start(VehiclesRepository vehicles, TransferHistoryRepository transferHistory)
         {
             Console.Clear();
             PrintCanvas();
+            PrintHeader();
             PrintOptions();
+
             var option = short.Parse(Console.ReadLine());
+
+            switch (option)
+            {
+                case 1: RegisterVehicleScreen.Start(vehicles, transferHistory); break;
+                default: break;
+            }
+
         }
         public static void PrintCanvas()
         {
@@ -24,13 +35,15 @@
             }
             PrintHorizontalLine();
         }
-        public static void PrintOptions()
+        public static void PrintHeader()
         {
             Console.SetCursorPosition(2, 2);
             Console.WriteLine("DEV Car");
             Console.SetCursorPosition(2, 3);
             Console.WriteLine("=================");
-
+        }
+        public static void PrintOptions()
+        {
             Console.SetCursorPosition(2, 5);
             Console.WriteLine("1 - Registrar novo veículo");
             Console.SetCursorPosition(2, 6);
