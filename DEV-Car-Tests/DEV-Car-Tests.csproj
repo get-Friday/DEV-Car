@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DEV-Car-Console\DEV-Car-Console.csproj" />
+  </ItemGroup>
+
 </Project>
