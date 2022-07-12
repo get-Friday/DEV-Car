@@ -1,34 +1,27 @@
 ﻿using DEV_Car_Console.Repository;
+using DEV_Car_Console.Models;
 
 namespace DEV_Car_Console.Screens
 {
     public static class RegisterVehicleScreen
     {
-        public static void Start(VehiclesRepository vehicle, TransferHistoryRepository transferHistory)
+        public static void Start(VehiclesRepository vehicles, TransferHistoryRepository transferHistory)
         {
-            Console.Clear();
-            MenuScreen.PrintCanvas();
-            MenuScreen.PrintHeader();
-            PrintOption();
+            string subHeaderText = "Escolha tipo de veículo para registrar";
+            string[] menuOptions = { "Moto/Triciclo", "Carro", "Caminhonete" };
+            MenuScreen.PrintMenu(15, 30, subHeaderText, menuOptions, "Voltar");
 
-            var option = short.Parse(Console.ReadLine());
+            var options = short.Parse(Console.ReadLine());
+
+            switch (options)
+            {
+                case 1: RegisterBikeTricicle(vehicles); break;
+                default: break;
+            }
         }
-        public static void PrintOption()
+        public static void RegisterBikeTricicle(VehiclesRepository vehicles)
         {
-            Console.SetCursorPosition(2, 5);
-            Console.WriteLine("Escolha o tipo do veículo:");
-            Console.SetCursorPosition(2, 7);
-            Console.WriteLine("1 - Motos/Triciclos");
-            Console.SetCursorPosition(2, 8);
-            Console.WriteLine("2 - Carros");
-            Console.SetCursorPosition(2, 9);
-            Console.WriteLine("3 - Caminhonete");
 
-            Console.SetCursorPosition(2, 11);
-            Console.WriteLine("Pressione outra tecla para voltar");
-
-            Console.SetCursorPosition(2, 14);
-            Console.Write("Opção selecionada: ");
         }
     }
 }

@@ -6,10 +6,9 @@ namespace DEV_Car_Console.Screens
     {
         public static void Start(VehiclesRepository vehicles, TransferHistoryRepository transferHistory)
         {
-            Console.Clear();
-            PrintCanvas();
-            PrintHeader();
-            PrintOptions();
+            string[] MenuOptions = {"Registrar novo veículo", "Listar veículos", "Carros disponíveis", "Carros vendidos", "Histórico de transferências"};
+
+            PrintMenu(15, 35, "Bem vindo!", MenuOptions, "Sair");
 
             var option = short.Parse(Console.ReadLine());
 
@@ -18,62 +17,78 @@ namespace DEV_Car_Console.Screens
                 case 0: Environment.Exit(0); break;
                 case 1: RegisterVehicleScreen.Start(vehicles, transferHistory); Start(vehicles, transferHistory); break;
                 case 2: ShowVehiclesScreen.Start(vehicles, transferHistory); Start(vehicles, transferHistory); break;
+                case 3: AvailableVehiclesScreen.Start(vehicles, transferHistory); Start(vehicles, transferHistory); break;
+                case 4: break;
+                case 5: break;
                 default: Start(vehicles, transferHistory); break;
+                // TODO?
+                // Para listar menor/maior valor usar o LINQ
+                // https://docs.microsoft.com/pt-br/dotnet/csharp/linq/write-linq-queries
             }
-
         }
-        public static void PrintCanvas()
+        public static void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions, string footerOption)
         {
-            PrintHorizontalLine();
-            for (int i = 0; i < 15; i++)
+            Console.Clear();
+            ConfigureCanvas(canvasSizeY, CanvasSizeX);
+            PrintHeader();
+            ConfigureSubHeader(SubHeaderText);
+            ConfigureOptions(menuOptions);
+            ConfigureFooter(canvasSizeY, footerOption);
+        }
+        private static void ConfigureCanvas(int sizeY, int sizeX)
+        {
+            PrintHorizontalLine(sizeX);
+            for (int i = 0; i < sizeY; i++)
             {
                 Console.Write("|");
 
-                for (int line = 0; line <= 35; line++)
+                for (int line = 0; line <= sizeX; line++)
                     Console.Write(" ");
 
                 Console.Write("|");
                 Console.Write(Environment.NewLine);
             }
-            PrintHorizontalLine();
+            PrintHorizontalLine(sizeX);
         }
-        public static void PrintHeader()
+        private static void PrintHorizontalLine(int size)
+        {
+            Console.Write("+");
+
+            for (int i = 0; i <= size; i++)
+                System.Console.Write("-");
+
+            Console.Write("+");
+            Console.Write(Environment.NewLine);
+        }
+        private static void PrintHeader()
         {
             Console.SetCursorPosition(2, 2);
             Console.WriteLine("DEV Car");
             Console.SetCursorPosition(2, 3);
             Console.WriteLine("=================");
         }
-        public static void PrintOptions()
+        private static void ConfigureSubHeader(string text)
         {
             Console.SetCursorPosition(2, 5);
-            Console.WriteLine("1 - Registrar novo veículo");
-            Console.SetCursorPosition(2, 6);
-            Console.WriteLine("2 - Listar veículos");
-            Console.SetCursorPosition(2, 7);
-            Console.WriteLine("3 - Carros disponíveis");
-            Console.SetCursorPosition(2, 8);
-            Console.WriteLine("4 - Carros vendidos");
-            // TODO?
-            // Para listar menor/maior valor usar o LINQ
-            // https://docs.microsoft.com/pt-br/dotnet/csharp/linq/write-linq-queries
-            Console.SetCursorPosition(2, 9);
-            Console.WriteLine("5 - Histórico de transferências");
-            Console.SetCursorPosition(2, 11);
-            Console.WriteLine("0 - Sair");
-
-            Console.SetCursorPosition(2, 14);
-            Console.Write("Opção selecionada: ");
+            Console.WriteLine(text);
         }
-        public static void PrintHorizontalLine()
+        private static void ConfigureOptions(string[] options)
         {
-            Console.Write("+");
+            int row = 5;
+            for (int i = 0; i < options.Length; i++)
+            {
+                Console.SetCursorPosition(2, row);
+                Console.WriteLine($"{i + 1} - {options[i]}");
+                row++;
+            }
+        }
+        private static void ConfigureFooter(int lastRow, string option)
+        {
+            Console.SetCursorPosition(2, lastRow - 3);
+            Console.WriteLine($"0 - {option}");
 
-            for (int i = 0; i <= 35; i++)
-                System.Console.Write("-");
-
-            Console.Write("+");
-            Console.Write(Environment.NewLine);
+            Console.SetCursorPosition(2, lastRow - 1);
+            Console.Write("Opção selecionada: ");
         }
     }
 }

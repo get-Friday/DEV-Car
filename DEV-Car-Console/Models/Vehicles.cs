@@ -10,7 +10,7 @@
         public string Name { get; set; }
         public string Plate { get; set; }
         public decimal Value { get; set; }
-        private int? BuyerCPF { get; set; }
+        public int? BuyerCPF { get; set; }
         public string Color { get; set; }
         public Vehicle(DateTime fabricationDate,
                        string name,
