@@ -22,7 +22,7 @@
                 case 1: new RegisterVehicleScreen().Start(); Start(); break;
                 case 2: new ShowVehiclesScreen().Start(); Start(); break;
                 case 3: new AvailableVehiclesScreen().Start(); Start(); break;
-                case 4: break;
+                case 4: new SoldVehiclesScreen().Start(); Start(); break;
                 case 5: break;
                 default: Start(); break;
             }
