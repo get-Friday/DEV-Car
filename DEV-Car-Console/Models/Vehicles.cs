@@ -36,7 +36,7 @@ namespace DEV_Car_Console.Models
         }
         public virtual string ShowInfo()
         {
-            string info = $"NOME: {Name} | PLACA: {Plate} | VALOR: R${Value} | COR: {Color}";
+            string info = $"> NOME: {Name} | PLACA: {Plate} | VALOR: R${Value} | COR: {Color}";
             return info;
         }
         public void ChangeInfo()
