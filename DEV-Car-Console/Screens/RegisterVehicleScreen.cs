@@ -16,8 +16,18 @@ namespace DEV_Car_Console.Screens
             switch (options)
             {
                 case 1: RegisterBikeTricicle(vehicles); break;
+                case 2: RegisterCar(vehicles); break;
+                case 3: RegisterPickup(vehicles); break;
                 default: break;
             }
+        }
+        public static void PrintFooter(int lastRow)
+        {
+            Console.SetCursorPosition(2, lastRow - 1);
+            Console.WriteLine("Veículo adicionado!");
+            Console.SetCursorPosition(2, lastRow);
+            Console.WriteLine("Pressione qualquer tecla para voltar");
+            var option = Console.ReadLine();
         }
         public static void RegisterBikeTricicle(VehiclesRepository vehicles)
         {
@@ -31,7 +41,7 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(23, 55, subHeaderText, menuOptions);
+            MenuScreen.PrintMenu(27, 55, subHeaderText, menuOptions);
 
             // Query start printintg a row 7
             Console.SetCursorPosition(3, 8);
@@ -53,11 +63,88 @@ namespace DEV_Car_Console.Screens
 
             vehicles.Vehicles.Add(bikeTricicle);
 
-            Console.SetCursorPosition(2, 22);
-            Console.WriteLine("Veículo adicionado!");
-            Console.SetCursorPosition(2, 23);
-            Console.WriteLine("Pressione qualquer tecla para voltar");
-            var option = Console.ReadLine();
+            PrintFooter(27);
+        }
+        public static void RegisterCar(VehiclesRepository vehicles)
+        {
+            string subHeaderText = "Registre Carro";
+            string[] menuOptions = {
+                "quantidade de portas",
+                "tipo de combustível",
+                "cavalos de força",
+                "data de fabricação (dd/mm/yy)",
+                "nome",
+                "placa",
+                "valor",
+                "cor"
+            };
+            MenuScreen.PrintMenu(27, 55, subHeaderText, menuOptions);
+
+            // Query start printintg a row 7
+            Console.SetCursorPosition(3, 8);
+            int totalDoors = int.Parse(Console.ReadLine());
+            Console.SetCursorPosition(3, 10);
+            string fuelType = Console.ReadLine();
+            Console.SetCursorPosition(3, 12);
+            int horsePower = int.Parse(Console.ReadLine());
+            Console.SetCursorPosition(3, 14);
+            DateTime fabricationDate = DateTime.Parse(Console.ReadLine());
+            Console.SetCursorPosition(3, 16);
+            string name = Console.ReadLine();
+            Console.SetCursorPosition(3, 18);
+            string plate = Console.ReadLine();
+            Console.SetCursorPosition(3, 20);
+            decimal value = Decimal.Parse(Console.ReadLine());
+            Console.SetCursorPosition(3, 22);
+            string color = Console.ReadLine();
+
+            Car car = new(totalDoors, fuelType, horsePower, fabricationDate, name, plate, value, color);
+
+            vehicles.Vehicles.Add(car);
+
+            PrintFooter(27);
+        }
+        public static void RegisterPickup(VehiclesRepository vehicles)
+        {
+            string subHeaderText = "Registre Caminhonete";
+            string[] menuOptions = {
+                "quantidade de portas",
+                "capacidade de carga (Litros)",
+                "cavalos de força",
+                "tipo combustível",
+                "data de fabricação (dd/mm/yy)",
+                "nome",
+                "placa",
+                "valor",
+                "cor"
+            };
+            MenuScreen.PrintMenu(27, 55, subHeaderText, menuOptions);
+
+            // Query start printintg a row 7
+            Console.SetCursorPosition(3, 8);
+            int totalDoors = int.Parse(Console.ReadLine());
+            Console.SetCursorPosition(3, 10);
+            int cargoSizeLiters = int.Parse(Console.ReadLine());
+            Console.SetCursorPosition(3, 12);
+            int horsePower = int.Parse(Console.ReadLine());
+            Console.SetCursorPosition(3, 14);
+            string typeFuel = Console.ReadLine();
+            Console.SetCursorPosition(3, 16);
+            DateTime fabricationDate = DateTime.Parse(Console.ReadLine());
+            Console.SetCursorPosition(3, 18);
+            string name = Console.ReadLine();
+            Console.SetCursorPosition(3, 20);
+            string plate = Console.ReadLine();
+            Console.SetCursorPosition(3, 22);
+            decimal value = Decimal.Parse(Console.ReadLine());
+            Console.SetCursorPosition(3, 24);
+            string color = Console.ReadLine();
+
+            PickupTruck pickup = new(totalDoors, cargoSizeLiters, horsePower, typeFuel, fabricationDate, name, plate, value, color);
+
+            vehicles.Vehicles.Add(pickup);
+
+            PrintFooter(27);
         }
     }
 }

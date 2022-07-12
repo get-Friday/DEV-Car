@@ -23,8 +23,8 @@ namespace DEV_Car_Console.Screens
             {
                 case 0: Environment.Exit(0); break;
                 case 1: RegisterVehicleScreen.Start(vehicles, transferHistory); Start(vehicles, transferHistory); break;
-                case 2: ShowVehiclesScreen.Start(vehicles, transferHistory); break;
-                case 3: AvailableVehiclesScreen.Start(vehicles, transferHistory); break;
+                case 2: ShowVehiclesScreen.Start(vehicles, transferHistory); Start(vehicles, transferHistory); break;
+                case 3: AvailableVehiclesScreen.Start(vehicles, transferHistory); Start(vehicles, transferHistory); break;
                 case 4: break;
                 case 5: break;
                 default: Start(vehicles, transferHistory); break;
