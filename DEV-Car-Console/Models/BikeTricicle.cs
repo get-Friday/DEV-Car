@@ -20,7 +20,7 @@ namespace DEV_Car_Console.Models
         }
         public override string ShowInfo()
         {
-            return $"{base.ShowInfo()} | POTENCIA: {Potency}cc";
+            return $"{base.ShowInfo()} \n| POTENCIA: {Potency}cc | RODAS: {QntWheels}";
         }
     }
 }

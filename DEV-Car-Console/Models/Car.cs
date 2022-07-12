@@ -23,7 +23,7 @@ namespace DEV_Car_Console.Models
         }
         public override string ShowInfo()
         {
-            return $"{base.ShowInfo()} | PORTAS: {TotalDoors} | COMBUSTIVEL: {FuelType} | POTENCIA: {HorsePower}hp";
+            return $"{base.ShowInfo()} \n| PORTAS: {TotalDoors} | COMBUSTIVEL: {FuelType} | POTENCIA: {HorsePower}hp";
         }
     }
 }
