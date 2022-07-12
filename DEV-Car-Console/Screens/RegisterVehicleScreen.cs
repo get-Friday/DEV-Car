@@ -30,7 +30,7 @@ namespace DEV_Car_Console.Screens
             Console.WriteLine("Pressione qualquer tecla para voltar");
             var option = Console.ReadLine();
         }
-        public static void RegisterBikeTricicle(VehiclesRepository repository)
+        private static void RegisterBikeTricicle(VehiclesRepository repository)
         {
             string subHeaderText = "Registre Moto/Triciclo";
             string[] menuOptions = { 
@@ -72,7 +72,7 @@ namespace DEV_Car_Console.Screens
 
             PrintFooter(27);
         }
-        public static void RegisterCar(VehiclesRepository repository)
+        private static void RegisterCar(VehiclesRepository repository)
         {
             string subHeaderText = "Registre Carro";
             string[] menuOptions = {
@@ -120,7 +120,7 @@ namespace DEV_Car_Console.Screens
 
             PrintFooter(27);
         }
-        public static void RegisterPickup(VehiclesRepository repository)
+        private static void RegisterPickup(VehiclesRepository repository)
         {
             string subHeaderText = "Registre Caminhonete";
             string[] menuOptions = {
