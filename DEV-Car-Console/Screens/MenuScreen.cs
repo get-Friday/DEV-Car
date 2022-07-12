@@ -1,11 +1,8 @@
-﻿using DEV_Car_Console.Repository;
-using DEV_Car_Console.Models;
-
-namespace DEV_Car_Console.Screens
+﻿namespace DEV_Car_Console.Screens
 {
     public static class MenuScreen
     {
-        public static void Start(VehiclesRepository vehicles, TransferHistoryRepository transferHistory)
+        public static void Start()
         {
             string[] menuOptions = {
                 "Registrar novo veículo",
@@ -22,12 +19,12 @@ namespace DEV_Car_Console.Screens
             switch (option)
             {
                 case 0: Environment.Exit(0); break;
-                case 1: RegisterVehicleScreen.Start(vehicles); Start(vehicles, transferHistory); break;
-                case 2: ShowVehiclesScreen.Start(vehicles); Start(vehicles, transferHistory); break;
-                case 3: AvailableVehiclesScreen.Start(vehicles); Start(vehicles, transferHistory); break;
+                case 1: new RegisterVehicleScreen().Start(); Start(); break;
+                case 2: new ShowVehiclesScreen().Start(); Start(); break;
+                case 3: new AvailableVehiclesScreen().Start(); Start(); break;
                 case 4: break;
                 case 5: break;
-                default: Start(vehicles, transferHistory); break;
+                default: Start(); break;
             }
         }
         public static void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions, string footerOption)

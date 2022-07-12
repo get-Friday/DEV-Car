@@ -2,10 +2,10 @@
 
 namespace DEV_Car_Console.Repository
 {
-    public class TransferHistoryRepository
+    public static class TransferHistoryRepository
     {
-        public IList<Financial> TransferHistory { get; set; }
-        public TransferHistoryRepository()
+        public static IList<Financial> TransferHistory { get; set; }
+        static TransferHistoryRepository()
         {
             TransferHistory = new List<Financial>();
         }

@@ -2,10 +2,10 @@
 
 namespace DEV_Car_Console.Repository
 {
-    public class VehiclesRepository
+    public static class VehiclesRepository
     {
-        public IList<Vehicle> Vehicles { get; set; }
-        public VehiclesRepository()
+        public static IList<Vehicle> Vehicles { get; set; }
+        static VehiclesRepository()
         {
             Vehicles = new List<Vehicle>();
         }

@@ -4,9 +4,9 @@ using DEV_Car_Console.Enum;
 
 namespace DEV_Car_Console.Screens
 {
-    public static class RegisterVehicleScreen
+    public class RegisterVehicleScreen
     {
-        public static void Start(VehiclesRepository vehicles)
+        public void Start()
         {
             string subHeaderText = "Escolha tipo de veículo para registrar";
             string[] menuOptions = { "Moto/Triciclo", "Carro", "Caminhonete" };
@@ -16,13 +16,13 @@ namespace DEV_Car_Console.Screens
 
             switch (options)
             {
-                case 1: RegisterBikeTricicle(vehicles); break;
-                case 2: RegisterCar(vehicles); break;
-                case 3: RegisterPickup(vehicles); break;
+                case 1: RegisterBikeTricicle(); break;
+                case 2: RegisterCar(); break;
+                case 3: RegisterPickup(); break;
                 default: break;
             }
         }
-        public static void PrintFooter(int lastRow)
+        private void PrintFooter(int lastRow)
         {
             Console.SetCursorPosition(2, lastRow - 1);
             Console.WriteLine("Veículo adicionado!");
@@ -30,7 +30,7 @@ namespace DEV_Car_Console.Screens
             Console.WriteLine("Pressione qualquer tecla para voltar");
             var option = Console.ReadLine();
         }
-        private static void RegisterBikeTricicle(VehiclesRepository repository)
+        private void RegisterBikeTricicle()
         {
             string subHeaderText = "Registre Moto/Triciclo";
             string[] menuOptions = { 
@@ -68,11 +68,11 @@ namespace DEV_Car_Console.Screens
 
             BikeTricicle bikeTricicle = new(potency, qntWheels, fabricationDate, name, plate, value, color, type);
 
-            repository.Vehicles.Add(bikeTricicle);
+            VehiclesRepository.Vehicles.Add(bikeTricicle);
 
             PrintFooter(27);
         }
-        private static void RegisterCar(VehiclesRepository repository)
+        private void RegisterCar()
         {
             string subHeaderText = "Registre Carro";
             string[] menuOptions = {
@@ -116,11 +116,11 @@ namespace DEV_Car_Console.Screens
 
             Car car = new(totalDoors, fuelType, horsePower, fabricationDate, name, plate, value, color, type);
 
-            repository.Vehicles.Add(car);
+            VehiclesRepository.Vehicles.Add(car);
 
             PrintFooter(27);
         }
-        private static void RegisterPickup(VehiclesRepository repository)
+        private void RegisterPickup()
         {
             string subHeaderText = "Registre Caminhonete";
             string[] menuOptions = {
@@ -167,16 +167,16 @@ namespace DEV_Car_Console.Screens
 
             PickupTruck pickup = new(totalDoors, cargoSizeLiters, horsePower, fuelType, fabricationDate, name, plate, value, color, type);
 
-            repository.Vehicles.Add(pickup);
+            VehiclesRepository.Vehicles.Add(pickup);
 
             PrintFooter(27);
         }
-        private static void PrintEnums(int sizeX, int sizeY, string[] options)
+        private void PrintEnums(int sizeX, int sizeY, string[] options)
         {
             PrintPopup(sizeX, sizeY);
             PrintEnumOptions(options);
         }
-        private static void PrintPopup(int sizeX, int sizeY)
+        private void PrintPopup(int sizeX, int sizeY)
         {
             Console.SetCursorPosition(57, 5);
             Console.Write("+");
@@ -205,7 +205,7 @@ namespace DEV_Car_Console.Screens
 
             Console.Write("+");
         }
-        private static void PrintEnumOptions(string[] EnumOptions)
+        private void PrintEnumOptions(string[] EnumOptions)
         {
             Console.SetCursorPosition(59, 6);
             Console.WriteLine("Usar código de cada cor: ");

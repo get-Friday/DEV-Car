@@ -5,7 +5,7 @@ namespace DEV_Car_Console.Screens
 {
     public class ShowVehiclesScreen
     {
-        public static void Start(VehiclesRepository vehicles)
+        public void Start()
         {
             string subHeaderText = "Listar veículos";
             string[] menuOptions = { 
@@ -20,38 +20,39 @@ namespace DEV_Car_Console.Screens
 
             switch (option)
             {
-                case 1: showBikesTricicles(vehicles); break;
-                case 4: ShowAll(vehicles); break;
+                case 1: ShowBikesTricicles(); break;
+                case 4: ShowAll(); break;
                 default: break;
             }
         }
-        public static void showBikesTricicles(VehiclesRepository repository)
+        private void ShowBikesTricicles()
         {
+            IEnumerable<Vehicle> query = VehiclesRepository.Vehicles.ToList().Where(vehicle => vehicle.Type == 0);
             string subHeaderText = $"Motos/Triciclos registrados";
-            int canvasSize = repository.Vehicles.Count + 10;
+            int canvasSize = VehiclesRepository.Vehicles.Count + 10;
             int row = 7;
 
             MenuScreen.PrintMenu(canvasSize, 105, subHeaderText);
 
-            foreach (Vehicle vehicle in repository.Vehicles)
+            foreach (Vehicle vehicle in query)
             {
                 Console.SetCursorPosition(2, row);
-                Console.WriteLine(vehicle);
+                Console.WriteLine(vehicle.ShowInfo());
                 row++;
             }
 
             Console.ReadLine();
 
         }
-        public static void ShowAll(VehiclesRepository repository)
+        private void ShowAll()
         {
-            string subHeaderText = $"{repository.Vehicles.Count} Veículos registrados";
-            int canvasSize = repository.Vehicles.Count + 10;
+            string subHeaderText = $"{VehiclesRepository.Vehicles.Count} Veículos registrados";
+            int canvasSize = VehiclesRepository.Vehicles.Count + 10;
             int row = 7;
 
             MenuScreen.PrintMenu(canvasSize, 105, subHeaderText);
 
-            foreach (Vehicle vehicle in repository.Vehicles)
+            foreach (Vehicle vehicle in VehiclesRepository.Vehicles)
             {
                 Console.SetCursorPosition(2, row);
                 Console.WriteLine(vehicle.ShowInfo());
