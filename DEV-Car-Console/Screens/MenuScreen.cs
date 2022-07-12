@@ -28,9 +28,6 @@ namespace DEV_Car_Console.Screens
                 case 4: break;
                 case 5: break;
                 default: Start(vehicles, transferHistory); break;
-                // TODO?
-                // Para listar menor/maior valor usar o LINQ
-                // https://docs.microsoft.com/pt-br/dotnet/csharp/linq/write-linq-queries
             }
         }
         public static void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions, string footerOption)
@@ -120,7 +117,7 @@ namespace DEV_Car_Console.Screens
             Console.WriteLine($"0 - {option}");
 
             Console.SetCursorPosition(2, lastRow - 1);
-            Console.Write("Opção selecionada: ");
+            Console.Write("Selecionar opção: ");
         }
     }
 }

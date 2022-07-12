@@ -1,5 +1,6 @@
 ﻿using DEV_Car_Console.Repository;
 using DEV_Car_Console.Models;
+using DEV_Car_Console.Enum;
 
 namespace DEV_Car_Console.Screens
 {
@@ -29,7 +30,7 @@ namespace DEV_Car_Console.Screens
             Console.WriteLine("Pressione qualquer tecla para voltar");
             var option = Console.ReadLine();
         }
-        public static void RegisterBikeTricicle(VehiclesRepository vehicles)
+        public static void RegisterBikeTricicle(VehiclesRepository repository)
         {
             string subHeaderText = "Registre Moto/Triciclo";
             string[] menuOptions = { 
@@ -41,7 +42,7 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(27, 55, subHeaderText, menuOptions);
+            MenuScreen.PrintMenu(27, 50, subHeaderText, menuOptions);
 
             // Query start printintg a row 7
             Console.SetCursorPosition(3, 8);
@@ -56,16 +57,22 @@ namespace DEV_Car_Console.Screens
             string plate = Console.ReadLine();
             Console.SetCursorPosition(3, 18);
             decimal value = Decimal.Parse(Console.ReadLine());
+            
+            string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
+            PrintEnums(25, 8, colorsOptions);
+            
             Console.SetCursorPosition(3, 20);
-            string color = Console.ReadLine();
+            EColors color = EColors.Parse<EColors>(Console.ReadLine());
 
-            BikeTricicle bikeTricicle = new(potency, qntWheels, fabricationDate, name, plate, value, color);
+            ETypeVehicle type = ETypeVehicle.MotoTriciclo;
 
-            vehicles.Vehicles.Add(bikeTricicle);
+            BikeTricicle bikeTricicle = new(potency, qntWheels, fabricationDate, name, plate, value, color, type);
+
+            repository.Vehicles.Add(bikeTricicle);
 
             PrintFooter(27);
         }
-        public static void RegisterCar(VehiclesRepository vehicles)
+        public static void RegisterCar(VehiclesRepository repository)
         {
             string subHeaderText = "Registre Carro";
             string[] menuOptions = {
@@ -78,13 +85,17 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(27, 55, subHeaderText, menuOptions);
+            MenuScreen.PrintMenu(27, 50, subHeaderText, menuOptions);
 
             // Query start printintg a row 7
             Console.SetCursorPosition(3, 8);
             int totalDoors = int.Parse(Console.ReadLine());
+
+            string[] fuelOptions = { "Flex", "Gasolina", "Diesel"};
+            PrintEnums(25, 5, fuelOptions);
+
             Console.SetCursorPosition(3, 10);
-            string fuelType = Console.ReadLine();
+            ETypeFuel fuelType = ETypeFuel.Parse<ETypeFuel>(Console.ReadLine());
             Console.SetCursorPosition(3, 12);
             int horsePower = int.Parse(Console.ReadLine());
             Console.SetCursorPosition(3, 14);
@@ -95,16 +106,21 @@ namespace DEV_Car_Console.Screens
             string plate = Console.ReadLine();
             Console.SetCursorPosition(3, 20);
             decimal value = Decimal.Parse(Console.ReadLine());
+
+            string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
+            PrintEnums(25, 8, colorsOptions);
+
             Console.SetCursorPosition(3, 22);
-            string color = Console.ReadLine();
+            EColors color = EColors.Parse<EColors>(Console.ReadLine());
+            ETypeVehicle type = ETypeVehicle.Carro;
 
-            Car car = new(totalDoors, fuelType, horsePower, fabricationDate, name, plate, value, color);
+            Car car = new(totalDoors, fuelType, horsePower, fabricationDate, name, plate, value, color, type);
 
-            vehicles.Vehicles.Add(car);
+            repository.Vehicles.Add(car);
 
             PrintFooter(27);
         }
-        public static void RegisterPickup(VehiclesRepository vehicles)
+        public static void RegisterPickup(VehiclesRepository repository)
         {
             string subHeaderText = "Registre Caminhonete";
             string[] menuOptions = {
@@ -118,7 +134,7 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(27, 55, subHeaderText, menuOptions);
+            MenuScreen.PrintMenu(27, 50, subHeaderText, menuOptions);
 
             // Query start printintg a row 7
             Console.SetCursorPosition(3, 8);
@@ -127,8 +143,12 @@ namespace DEV_Car_Console.Screens
             int cargoSizeLiters = int.Parse(Console.ReadLine());
             Console.SetCursorPosition(3, 12);
             int horsePower = int.Parse(Console.ReadLine());
+
+            string[] fuelOptions = { "Flex", "Gasolina", "Diesel" };
+            PrintEnums(25, 5, fuelOptions);
+
             Console.SetCursorPosition(3, 14);
-            string typeFuel = Console.ReadLine();
+            ETypeFuel fuelType = ETypeFuel.Parse<ETypeFuel>(Console.ReadLine());
             Console.SetCursorPosition(3, 16);
             DateTime fabricationDate = DateTime.Parse(Console.ReadLine());
             Console.SetCursorPosition(3, 18);
@@ -137,14 +157,66 @@ namespace DEV_Car_Console.Screens
             string plate = Console.ReadLine();
             Console.SetCursorPosition(3, 22);
             decimal value = Decimal.Parse(Console.ReadLine());
+
+            string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
+            PrintEnums(25, 8, colorsOptions);
+
             Console.SetCursorPosition(3, 24);
-            string color = Console.ReadLine();
+            EColors color = EColors.Parse<EColors>(Console.ReadLine());
+            ETypeVehicle type = ETypeVehicle.Caminhonete;
 
-            PickupTruck pickup = new(totalDoors, cargoSizeLiters, horsePower, typeFuel, fabricationDate, name, plate, value, color);
+            PickupTruck pickup = new(totalDoors, cargoSizeLiters, horsePower, fuelType, fabricationDate, name, plate, value, color, type);
 
-            vehicles.Vehicles.Add(pickup);
+            repository.Vehicles.Add(pickup);
 
             PrintFooter(27);
+        }
+        private static void PrintEnums(int sizeX, int sizeY, string[] options)
+        {
+            PrintPopup(sizeX, sizeY);
+            PrintEnumOptions(options);
+        }
+        private static void PrintPopup(int sizeX, int sizeY)
+        {
+            Console.SetCursorPosition(57, 5);
+            Console.Write("+");
+
+            for (int i = 0; i <= sizeX; i++)
+                System.Console.Write("-");
+
+            Console.Write("+");
+
+            for (int i = 0; i < sizeY; i++)
+            {
+                Console.SetCursorPosition(57, i + 6);
+                Console.Write("|");
+
+                for (int line = 0; line <= sizeX; line++)
+                    Console.Write(" ");
+
+                Console.Write("|");
+            }
+
+            Console.SetCursorPosition(57, sizeY + 6);
+            Console.Write("+");
+
+            for (int i = 0; i <= sizeX; i++)
+                System.Console.Write("-");
+
+            Console.Write("+");
+        }
+        private static void PrintEnumOptions(string[] EnumOptions)
+        {
+            Console.SetCursorPosition(59, 6);
+            Console.WriteLine("Usar código de cada cor: ");
+            
+            int row = 8;
+            for (int i = 0; i < EnumOptions.Length; i++)
+            {
+                Console.SetCursorPosition(59, row);
+                Console.WriteLine($"{i} - {EnumOptions[i]}");
+                row++;
+            }
         }
     }
 }
