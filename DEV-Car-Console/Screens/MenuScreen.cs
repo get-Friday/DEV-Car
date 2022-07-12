@@ -1,4 +1,5 @@
 ﻿using DEV_Car_Console.Repository;
+using DEV_Car_Console.Models;
 
 namespace DEV_Car_Console.Screens
 {
@@ -6,9 +7,15 @@ namespace DEV_Car_Console.Screens
     {
         public static void Start(VehiclesRepository vehicles, TransferHistoryRepository transferHistory)
         {
-            string[] MenuOptions = {"Registrar novo veículo", "Listar veículos", "Carros disponíveis", "Carros vendidos", "Histórico de transferências"};
+            string[] menuOptions = {
+                "Registrar novo veículo",
+                "Listar veículos",
+                "Carros disponíveis",
+                "Carros vendidos",
+                "Histórico de transferências"
+            };
 
-            PrintMenu(15, 35, "Bem vindo!", MenuOptions, "Sair");
+            PrintMenu(17, 35, "Bem vindo!", menuOptions, "Sair");
 
             var option = short.Parse(Console.ReadLine());
 
@@ -16,8 +23,8 @@ namespace DEV_Car_Console.Screens
             {
                 case 0: Environment.Exit(0); break;
                 case 1: RegisterVehicleScreen.Start(vehicles, transferHistory); Start(vehicles, transferHistory); break;
-                case 2: ShowVehiclesScreen.Start(vehicles, transferHistory); Start(vehicles, transferHistory); break;
-                case 3: AvailableVehiclesScreen.Start(vehicles, transferHistory); Start(vehicles, transferHistory); break;
+                case 2: ShowVehiclesScreen.Start(vehicles, transferHistory); break;
+                case 3: AvailableVehiclesScreen.Start(vehicles, transferHistory); break;
                 case 4: break;
                 case 5: break;
                 default: Start(vehicles, transferHistory); break;
@@ -34,6 +41,14 @@ namespace DEV_Car_Console.Screens
             ConfigureSubHeader(SubHeaderText);
             ConfigureOptions(menuOptions);
             ConfigureFooter(canvasSizeY, footerOption);
+        }
+        public static void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions)
+        {
+            Console.Clear();
+            ConfigureCanvas(canvasSizeY, CanvasSizeX);
+            PrintHeader();
+            ConfigureSubHeader(SubHeaderText);
+            ConfigureQuery(menuOptions);
         }
         private static void ConfigureCanvas(int sizeY, int sizeX)
         {
@@ -74,12 +89,22 @@ namespace DEV_Car_Console.Screens
         }
         private static void ConfigureOptions(string[] options)
         {
-            int row = 5;
+            int row = 7;
             for (int i = 0; i < options.Length; i++)
             {
                 Console.SetCursorPosition(2, row);
                 Console.WriteLine($"{i + 1} - {options[i]}");
                 row++;
+            }
+        }
+        private static void ConfigureQuery(string[] options)
+        {
+            int row = 7;
+            for (int i = 0; i < options.Length; i++)
+            {
+                Console.SetCursorPosition(2, row);
+                Console.WriteLine($"Informe {options[i]}: ");
+                row += 2;
             }
         }
         private static void ConfigureFooter(int lastRow, string option)
