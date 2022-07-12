@@ -1,4 +1,6 @@
-﻿namespace DEV_Car_Console.Models
+﻿using DEV_Car_Console.Enum;
+
+namespace DEV_Car_Console.Models
 {
     public class BikeTricicle : Vehicle
     {
@@ -10,7 +12,8 @@
                             string name,
                             string plate,
                             decimal value,
-                            string color) : base(fabricationDate, name, plate, value, color)
+                            EColors color,
+                            ETypeVehicle type) : base(fabricationDate, name, plate, value, color, type)
         {
             Potency = potency;
             QntWheels = qntWheels;

@@ -1,4 +1,6 @@
-﻿namespace DEV_Car_Console.Models
+﻿using DEV_Car_Console.Enum;
+
+namespace DEV_Car_Console.Models
 {
     public class Vehicle
     {
@@ -11,12 +13,14 @@
         public string Plate { get; set; }
         public decimal Value { get; set; }
         public int? BuyerCPF { get; set; }
-        public string Color { get; set; }
+        public EColors Color { get; set; }
+        public ETypeVehicle Type { get; set; }
         public Vehicle(DateTime fabricationDate,
                        string name,
                        string plate,
                        decimal value,
-                       string color)
+                       EColors color,
+                       ETypeVehicle type)
         {
             FrameNumber = Guid.NewGuid();
             FabricationDate = fabricationDate;
@@ -24,14 +28,15 @@
             Plate = plate;
             Value = value;
             Color = color;
+            Type = type;
         }
-        public void SellVehicle()
+        public void SellVehicle(int buyerCPF)
         {
-
+            BuyerCPF = buyerCPF;
         }
         public string ShowInfo()
         {
-            string info = $"NOME: {Name} | PLACA: {Plate} | VALOR: R${Value} | COR:  {Color}";
+            string info = $"NOME: {Name} | PLACA: {Plate} | VALOR: R${Value} | COR: {Color}";
             return info;
         }
         public void ChangeInfo()
