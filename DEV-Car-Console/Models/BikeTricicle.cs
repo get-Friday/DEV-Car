@@ -3,9 +3,9 @@
     public class BikeTricicle : Vehicle
     {
         public int Potency { get; set; }
-        public int Wheels { get; set; }
+        public int QntWheels { get; set; }
         public BikeTricicle(int potency,
-                            int wheels,
+                            int qntWheels,
                             DateTime fabricationDate,
                             string name,
                             string plate,
@@ -13,7 +13,7 @@
                             string color) : base(fabricationDate, name, plate, value, color)
         {
             Potency = potency;
-            Wheels = wheels;
+            QntWheels = qntWheels;
         }
     }
 }
