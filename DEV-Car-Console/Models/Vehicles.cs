@@ -31,7 +31,8 @@
         }
         public string ShowInfo()
         {
-            return "";
+            string info = $"NOME: {Name} | PLACA: {Plate} | VALOR: R${Value} | COR:  {Color}";
+            return info;
         }
         public void ChangeInfo()
         {

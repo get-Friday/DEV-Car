@@ -50,6 +50,13 @@ namespace DEV_Car_Console.Screens
             ConfigureSubHeader(SubHeaderText);
             ConfigureQuery(menuOptions);
         }
+        public static void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText)
+        {
+            Console.Clear();
+            ConfigureCanvas(canvasSizeY, CanvasSizeX);
+            PrintHeader();
+            ConfigureSubHeader(SubHeaderText);
+        }
         private static void ConfigureCanvas(int sizeY, int sizeX)
         {
             PrintHorizontalLine(sizeX);
