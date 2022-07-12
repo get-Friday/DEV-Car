@@ -34,7 +34,7 @@ namespace DEV_Car_Console.Models
         {
             BuyerCPF = buyerCPF;
         }
-        public string ShowInfo()
+        public virtual string ShowInfo()
         {
             string info = $"NOME: {Name} | PLACA: {Plate} | VALOR: R${Value} | COR: {Color}";
             return info;

@@ -24,5 +24,9 @@ namespace DEV_Car_Console.Models
             HorsePower = horsePower;
             TypeFuel = typeFuel;
         }
+        public override string ShowInfo()
+        {
+            return $"{base.ShowInfo()} | PORTAS: {TotalDoors} | CARGA: {CargoSizeLiters}L | POTENCIA: {HorsePower}hp | COMBUSTIVEL: {TypeFuel}";
+        }
     }
 }

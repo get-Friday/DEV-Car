@@ -18,5 +18,9 @@ namespace DEV_Car_Console.Models
             Potency = potency;
             QntWheels = qntWheels;
         }
+        public override string ShowInfo()
+        {
+            return $"{base.ShowInfo()} | POTENCIA: {Potency}cc";
+        }
     }
 }
