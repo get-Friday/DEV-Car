@@ -5,7 +5,7 @@ namespace DEV_Car_Console.Screens
 {
     public class ShowVehiclesScreen
     {
-        public static void Start(VehiclesRepository vehicles, TransferHistoryRepository transferHistory)
+        public static void Start(VehiclesRepository vehicles)
         {
             
         }

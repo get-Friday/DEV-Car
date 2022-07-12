@@ -5,7 +5,7 @@ namespace DEV_Car_Console.Screens
 {
     public static class RegisterVehicleScreen
     {
-        public static void Start(VehiclesRepository vehicles, TransferHistoryRepository transferHistory)
+        public static void Start(VehiclesRepository vehicles)
         {
             string subHeaderText = "Escolha tipo de veículo para registrar";
             string[] menuOptions = { "Moto/Triciclo", "Carro", "Caminhonete" };
