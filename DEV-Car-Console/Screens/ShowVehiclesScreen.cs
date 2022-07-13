@@ -14,7 +14,7 @@ namespace DEV_Car_Console.Screens
                 "Caminhonetes",
                 "Todos"
             };
-            MenuScreen.PrintMenu(17, 35, subHeaderText, menuOptions, "Voltar");
+            new MenuScreen().PrintMenu(17, 35, subHeaderText, menuOptions, "Voltar");
 
             var option = short.Parse(Console.ReadLine());
 
@@ -34,7 +34,7 @@ namespace DEV_Car_Console.Screens
             int canvasSize = query.Count() * 2 + 10;
             int row = 7;
 
-            MenuScreen.PrintMenu(canvasSize, 85, subHeaderText);
+            new MenuScreen().PrintMenu(canvasSize, 85, subHeaderText);
 
             foreach (Vehicle vehicle in query)
             {
@@ -53,7 +53,7 @@ namespace DEV_Car_Console.Screens
             int canvasSize = query.Count() * 2 + 10;
             int row = 7;
 
-            MenuScreen.PrintMenu(canvasSize, 85, subHeaderText);
+            new MenuScreen().PrintMenu(canvasSize, 85, subHeaderText);
 
             foreach (Vehicle vehicle in query)
             {
@@ -71,7 +71,7 @@ namespace DEV_Car_Console.Screens
             int canvasSize = query.Count() * 2 + 10;
             int row = 7;
 
-            MenuScreen.PrintMenu(canvasSize, 85, subHeaderText);
+            new MenuScreen().PrintMenu(canvasSize, 85, subHeaderText);
 
             foreach (Vehicle vehicle in query)
             {
@@ -88,7 +88,7 @@ namespace DEV_Car_Console.Screens
             int canvasSize = VehiclesRepository.Vehicles.Count * 2 + 10;
             int row = 7;
 
-            MenuScreen.PrintMenu(canvasSize, 85, subHeaderText);
+            new MenuScreen().PrintMenu(canvasSize, 85, subHeaderText);
 
             foreach (Vehicle vehicle in VehiclesRepository.Vehicles)
             {

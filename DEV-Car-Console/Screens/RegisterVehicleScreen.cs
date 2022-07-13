@@ -10,7 +10,7 @@ namespace DEV_Car_Console.Screens
         {
             string subHeaderText = "Escolha tipo de veículo para registrar";
             string[] menuOptions = { "Moto/Triciclo", "Carro", "Caminhonete" };
-            MenuScreen.PrintMenu(17, 55, subHeaderText, menuOptions, "Voltar");
+            new MenuScreen().PrintMenu(17, 55, subHeaderText, menuOptions, "Voltar");
 
             var options = short.Parse(Console.ReadLine());
 
@@ -42,7 +42,7 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(27, 50, subHeaderText, menuOptions);
+            new MenuScreen().PrintMenu(27, 50, subHeaderText, menuOptions);
 
             // Query start printintg a row 7
             Console.SetCursorPosition(3, 8);
@@ -85,7 +85,7 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(27, 50, subHeaderText, menuOptions);
+            new MenuScreen().PrintMenu(27, 50, subHeaderText, menuOptions);
 
             // Query start printintg a row 7
             Console.SetCursorPosition(3, 8);
@@ -134,7 +134,7 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(27, 50, subHeaderText, menuOptions);
+            new MenuScreen().PrintMenu(27, 50, subHeaderText, menuOptions);
 
             // Query start printintg a row 7
             Console.SetCursorPosition(3, 8);
