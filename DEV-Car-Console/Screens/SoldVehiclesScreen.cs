@@ -30,7 +30,7 @@ namespace DEV_Car_Console.Screens
         }
         private void PrintSold(IEnumerable<Vehicle> query, int canvasSize, string subHeaderText, int row)
         {
-            new MenuScreen().PrintMenu(canvasSize, 85, subHeaderText);
+            new MenuScreen().PrintMenu(canvasSize, 92, subHeaderText);
 
             foreach (Vehicle vehicle in query)
             {

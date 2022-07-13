@@ -6,11 +6,11 @@
         private int? BuyerCPF { get; set; }
         private Decimal Value { get; set; }
         private DateTime Date { get; set; }
-        public Financial(Vehicle vehicleData, DateTime date)
+        public Financial(Vehicle vehicle, DateTime date)
         {
-            VehicleData = vehicleData.ShowInfo();
-            BuyerCPF = vehicleData.BuyerCPF;
-            Value = vehicleData.Value;
+            VehicleData = vehicle.ShowInfo();
+            BuyerCPF = vehicle.BuyerCPF;
+            Value = vehicle.Value;
             Date = date;
         }
         public string ShowInfo()

@@ -9,7 +9,7 @@ namespace DEV_Car_Console.Screens
         {
             string subHeaderText = "Vender veículo";
 
-            new MenuScreen().PrintMenu(20, 35, subHeaderText);
+            new MenuScreen().PrintMenu(20, 40, subHeaderText);
 
             Console.SetCursorPosition(2, 7);
             Console.WriteLine("Informe o CPF do comprador: ");
@@ -22,13 +22,6 @@ namespace DEV_Car_Console.Screens
             string plate = Console.ReadLine();
 
             SellVehicle(plate, BuyerCPF);
-
-            Console.SetCursorPosition(2, 18);
-            Console.WriteLine("Veículo vendido!");
-            Console.SetCursorPosition(2, 19);
-            Console.Write("pressione qualquer tecla para voltar");
-
-            Console.Read();
         }
         private void SellVehicle(string plate, int buyerCPF)
         {
