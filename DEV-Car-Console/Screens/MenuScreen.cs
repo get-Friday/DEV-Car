@@ -24,7 +24,7 @@
                 case 0: Environment.Exit(0); break;
                 case 1: new RegisterVehicleScreen().Start(); Start(); break;
                 case 2: new SellVehicleScreen().Start(); Start(); break;
-                case 3: break;
+                case 3: new ChangeVehicleScreen().Start(); Start(); break;
                 case 4: new ShowVehiclesScreen().Start(); Start(); break;
                 case 5: new AvailableVehiclesScreen().Start(); Start(); break;
                 case 6: new SoldVehiclesScreen().Start(); Start(); break;
