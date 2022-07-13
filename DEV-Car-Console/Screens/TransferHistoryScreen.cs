@@ -13,10 +13,10 @@ namespace DEV_Car_Console.Screens
 
             new MenuScreen().PrintMenu(canvasSize, 110, subHeaderText);
 
-            foreach (var item in TransferHistoryRepository.TransferHistory)
+            foreach (Financial history in TransferHistoryRepository.TransferHistory)
             {
                 Console.SetCursorPosition(2, row);
-                Console.WriteLine(item.ShowInfo());
+                Console.WriteLine(history.ShowInfo());
                 row += 2;
             }
 
