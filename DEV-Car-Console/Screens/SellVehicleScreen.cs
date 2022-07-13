@@ -1,6 +1,5 @@
 ﻿using DEV_Car_Console.Models;
 using DEV_Car_Console.Repository;
-using DEV_Car_Console.Enum;
 
 namespace DEV_Car_Console.Screens
 {
@@ -33,11 +32,14 @@ namespace DEV_Car_Console.Screens
         }
         private void SellVehicle(string plate, int buyerCPF)
         {
-            Vehicle? query = VehiclesRepository.Vehicles
+            Vehicle query = VehiclesRepository.Vehicles
                 .ToList()
                 .Find(vehicle => vehicle.Plate == plate);
 
             query.SellVehicle(buyerCPF);
+
+            Financial history = new(query, DateTime.Now);
+            TransferHistoryRepository.TransferHistory.Add(history);
         }
     }
 }
