@@ -38,12 +38,10 @@ namespace DEV_Car_Console.Models
         {
             return $"> NOME: {Name} | PLACA: {Plate} | VALOR: R${Value} | COR: {Color}";
         }
-        public virtual void ChangeInfo(DateTime fabricationDate, string name, string plate, decimal value)
+        public void ChangeInfo(decimal value, EColors color)
         {
-            FabricationDate = fabricationDate;
-            Name = name;
-            Plate = plate;
             Value = value;
+            Color = color;
         }
     }
 }
