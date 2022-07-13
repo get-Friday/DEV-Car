@@ -2,16 +2,20 @@
 {
     public class Financial
     {
-        public Vehicle VehicleData { get; set; }
-        public string BuyerCPF { get; set; }
-        public Decimal Value { get; set; }
-        public DateTime Date { get; set; }
-        public Financial(Vehicle vehicleData, string buyerCPF, decimal value, DateTime date)
+        private string VehicleData { get; set; }
+        private int? BuyerCPF { get; set; }
+        private Decimal Value { get; set; }
+        private DateTime Date { get; set; }
+        public Financial(Vehicle vehicleData, DateTime date)
         {
-            VehicleData = vehicleData;
-            BuyerCPF = buyerCPF;
-            Value = value;
+            VehicleData = vehicleData.ShowInfo();
+            BuyerCPF = vehicleData.BuyerCPF;
+            Value = vehicleData.Value;
             Date = date;
+        }
+        public string ShowInfo()
+        {
+            return $"{VehicleData} --> DATA DE VENDA: {Date:dd/MM/yyyy} | CPF COMPRADOR: {BuyerCPF}";
         }
     }
 }

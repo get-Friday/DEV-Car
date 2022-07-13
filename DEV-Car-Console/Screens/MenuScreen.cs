@@ -24,7 +24,7 @@
                 case 2: new ShowVehiclesScreen().Start(); Start(); break;
                 case 3: new AvailableVehiclesScreen().Start(); Start(); break;
                 case 4: new SoldVehiclesScreen().Start(); Start(); break;
-                case 5: break;
+                case 5: new TransferHistoryScreen().Start(); Start(); break;
                 default: Start(); break;
             }
         }

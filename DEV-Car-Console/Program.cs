@@ -27,6 +27,11 @@ class Program
 
         TT.SellVehicle(1234);
         A3.SellVehicle(0004);
+        Financial FTT = new(TT, DateTime.Parse("07/06/2019"));
+        Financial FA3 = new(A3, DateTime.Parse("23/11/2020"));
+
+        TransferHistoryRepository.TransferHistory.Add(FTT);
+        TransferHistoryRepository.TransferHistory.Add(FA3);
 
         VehiclesRepository.Vehicles.Add(A3);
         VehiclesRepository.Vehicles.Add(TT);
