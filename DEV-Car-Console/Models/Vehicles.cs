@@ -36,12 +36,14 @@ namespace DEV_Car_Console.Models
         }
         public virtual string ShowInfo()
         {
-            string info = $"> NOME: {Name} | PLACA: {Plate} | VALOR: R${Value} | COR: {Color}";
-            return info;
+            return $"> NOME: {Name} | PLACA: {Plate} | VALOR: R${Value} | COR: {Color}";
         }
-        public void ChangeInfo()
+        public virtual void ChangeInfo(DateTime fabricationDate, string name, string plate, decimal value)
         {
-
+            FabricationDate = fabricationDate;
+            Name = name;
+            Plate = plate;
+            Value = value;
         }
     }
 }
