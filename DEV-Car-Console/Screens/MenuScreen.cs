@@ -1,9 +1,10 @@
 ﻿namespace DEV_Car_Console.Screens
 {
-    public static class MenuScreen
+    public class MenuScreen
     {
-        public static void Start()
+        public void Start()
         {
+            string subHeaderText = "Bem vindo!";
             string[] menuOptions = {
                 "Registrar novo veículo",
                 "Listar veículos",
@@ -12,7 +13,7 @@
                 "Histórico de transferências"
             };
 
-            PrintMenu(17, 35, "Bem vindo!", menuOptions, "Sair");
+            PrintMenu(17, 35, subHeaderText, menuOptions, "Sair");
 
             var option = short.Parse(Console.ReadLine());
 
@@ -27,7 +28,7 @@
                 default: Start(); break;
             }
         }
-        public static void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions, string footerOption)
+        public void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions, string footerOption)
         {
             Console.Clear();
             ConfigureCanvas(canvasSizeY, CanvasSizeX);
@@ -36,7 +37,7 @@
             ConfigureOptions(menuOptions);
             ConfigureFooter(canvasSizeY, footerOption);
         }
-        public static void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions)
+        public void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions)
         {
             Console.Clear();
             ConfigureCanvas(canvasSizeY, CanvasSizeX);
@@ -44,14 +45,14 @@
             ConfigureSubHeader(SubHeaderText);
             ConfigureQuery(menuOptions);
         }
-        public static void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText)
+        public void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText)
         {
             Console.Clear();
             ConfigureCanvas(canvasSizeY, CanvasSizeX);
             PrintHeader();
             ConfigureSubHeader(SubHeaderText);
         }
-        private static void ConfigureCanvas(int sizeY, int sizeX)
+        private void ConfigureCanvas(int sizeY, int sizeX)
         {
             PrintHorizontalLine(sizeX);
             for (int i = 0; i < sizeY; i++)
@@ -66,7 +67,7 @@
             }
             PrintHorizontalLine(sizeX);
         }
-        private static void PrintHorizontalLine(int size)
+        private void PrintHorizontalLine(int size)
         {
             Console.Write("+");
 
@@ -76,19 +77,19 @@
             Console.Write("+");
             Console.Write(Environment.NewLine);
         }
-        private static void PrintHeader()
+        private void PrintHeader()
         {
             Console.SetCursorPosition(2, 2);
             Console.WriteLine("DEV Car");
             Console.SetCursorPosition(2, 3);
             Console.WriteLine("=================");
         }
-        private static void ConfigureSubHeader(string text)
+        private void ConfigureSubHeader(string text)
         {
             Console.SetCursorPosition(2, 5);
             Console.WriteLine(text);
         }
-        private static void ConfigureOptions(string[] options)
+        private void ConfigureOptions(string[] options)
         {
             int row = 7;
             for (int i = 0; i < options.Length; i++)
@@ -98,7 +99,7 @@
                 row++;
             }
         }
-        private static void ConfigureQuery(string[] options)
+        private void ConfigureQuery(string[] options)
         {
             int row = 7;
             for (int i = 0; i < options.Length; i++)
@@ -108,7 +109,7 @@
                 row += 2;
             }
         }
-        private static void ConfigureFooter(int lastRow, string option)
+        private void ConfigureFooter(int lastRow, string option)
         {
             Console.SetCursorPosition(2, lastRow - 3);
             Console.WriteLine($"0 - {option}");
