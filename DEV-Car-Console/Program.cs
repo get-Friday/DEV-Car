@@ -25,6 +25,9 @@ class Program
         Car TT = new(2, ETypeFuel.Flex, 245, DateTime.Parse("06/06/2019"), "Audi TT Coupe", "LTT02M4", 442990.0M, EColors.Preto, ETypeVehicle.Carro);
         Car Across = new(4, ETypeFuel.Flex, 306, DateTime.Parse("20/02/2020"), "Suziki Across", "AC5S50", 58725.0M, EColors.Branco, ETypeVehicle.Carro);
 
+        TT.SellVehicle(1234);
+        A3.SellVehicle(0004);
+
         VehiclesRepository.Vehicles.Add(A3);
         VehiclesRepository.Vehicles.Add(TT);
         VehiclesRepository.Vehicles.Add(Across);
