@@ -1,5 +1,6 @@
 ﻿using DEV_Car_Console.Repository;
 using DEV_Car_Console.Models;
+using DEV_Car_Console.Enum;
 
 namespace DEV_Car_Console.Screens
 {
@@ -29,7 +30,10 @@ namespace DEV_Car_Console.Screens
         }
         private void ShowBikesTricicles()
         {
-            IEnumerable<Vehicle> query = VehiclesRepository.Vehicles.ToList().Where(vehicle => vehicle.Type == Enum.ETypeVehicle.MotoTriciclo);
+            IEnumerable<Vehicle> query = VehiclesRepository.Vehicles
+                .ToList()
+                .Where(vehicle => vehicle.Type == ETypeVehicle.MotoTriciclo);
+
             string subHeaderText = $"Motos/Triciclos registrados";
             int canvasSize = query.Count() * 2 + 10;
             int row = 7;
@@ -48,7 +52,10 @@ namespace DEV_Car_Console.Screens
         }
         private void ShowCar()
         {
-            IEnumerable<Vehicle> query = VehiclesRepository.Vehicles.ToList().Where(vehicle => vehicle.Type == Enum.ETypeVehicle.Carro);
+            IEnumerable<Vehicle> query = VehiclesRepository.Vehicles
+                .ToList()
+                .Where(vehicle => vehicle.Type == ETypeVehicle.Carro);
+
             string subHeaderText = $"Carros registrados";
             int canvasSize = query.Count() * 2 + 10;
             int row = 7;
@@ -66,7 +73,10 @@ namespace DEV_Car_Console.Screens
         }
         private void ShowPickupTruck()
         {
-            IEnumerable<Vehicle> query = VehiclesRepository.Vehicles.ToList().Where(vehicle => vehicle.Type == Enum.ETypeVehicle.Caminhonete);
+            IEnumerable<Vehicle> query = VehiclesRepository.Vehicles
+                .ToList()
+                .Where(vehicle => vehicle.Type == ETypeVehicle.Caminhonete);
+
             string subHeaderText = $"Caminhonetes registradas";
             int canvasSize = query.Count() * 2 + 10;
             int row = 7;

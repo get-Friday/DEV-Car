@@ -10,7 +10,7 @@ namespace DEV_Car_Console.Screens
         {
             string subHeaderText = "Escolha tipo de veículo para registrar";
             string[] menuOptions = { "Moto/Triciclo", "Carro", "Caminhonete" };
-            new MenuScreen().PrintMenu(17, 55, subHeaderText, menuOptions, "Voltar");
+            new MenuScreen().PrintMenu(20, 55, subHeaderText, menuOptions, "Voltar");
 
             var options = short.Parse(Console.ReadLine());
 

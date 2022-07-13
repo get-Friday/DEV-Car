@@ -7,13 +7,15 @@
             string subHeaderText = "Bem vindo!";
             string[] menuOptions = {
                 "Registrar novo veículo",
+                "Vender veículo",
+                "Alterar veículo",
                 "Listar veículos",
                 "Carros disponíveis",
                 "Carros vendidos",
                 "Histórico de transferências"
             };
 
-            PrintMenu(17, 35, subHeaderText, menuOptions, "Sair");
+            PrintMenu(20, 35, subHeaderText, menuOptions, "Sair");
 
             var option = short.Parse(Console.ReadLine());
 
@@ -21,10 +23,12 @@
             {
                 case 0: Environment.Exit(0); break;
                 case 1: new RegisterVehicleScreen().Start(); Start(); break;
-                case 2: new ShowVehiclesScreen().Start(); Start(); break;
-                case 3: new AvailableVehiclesScreen().Start(); Start(); break;
-                case 4: new SoldVehiclesScreen().Start(); Start(); break;
-                case 5: new TransferHistoryScreen().Start(); Start(); break;
+                case 2: new SellVehicleScreen().Start(); Start(); break;
+                case 3: break;
+                case 4: new ShowVehiclesScreen().Start(); Start(); break;
+                case 5: new AvailableVehiclesScreen().Start(); Start(); break;
+                case 6: new SoldVehiclesScreen().Start(); Start(); break;
+                case 7: new TransferHistoryScreen().Start(); Start(); break;
                 default: Start(); break;
             }
         }
