@@ -4,9 +4,6 @@ namespace DEV_Car_Console.Models
 {
     public class Vehicle
     {
-        // TODO:
-        // Pesquisar sobre init pra strings
-        // https://docs.microsoft.com/pt-br/dotnet/csharp/language-reference/proposals/csharp-9.0/init
         public Guid FrameNumber { get; set; }
         public DateTime FabricationDate { get; set; }
         public string Name { get; set; }
