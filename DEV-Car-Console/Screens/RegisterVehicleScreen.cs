@@ -30,14 +30,6 @@ namespace DEV_Car_Console.Screens
                 new MenuScreen().PrintError(20, "Opção inválida");
             }
         }
-        private void PrintFooter(int lastRow)
-        {
-            Console.SetCursorPosition(2, lastRow - 1);
-            Console.WriteLine("Veículo adicionado!");
-            Console.SetCursorPosition(2, lastRow);
-            Console.WriteLine("Pressione qualquer tecla para voltar");
-            var option = Console.ReadLine();
-        }
         private void RegisterBikeTricicle()
         {
             string subHeaderText = "Registre Moto/Triciclo";
@@ -339,10 +331,11 @@ namespace DEV_Car_Console.Screens
 
             PrintFooter(27);
         }
-        private void PrintEnums(int sizeX, int sizeY, string[] options)
+        private bool VerifyPlate(string plate)
         {
-            PrintPopup(sizeX, sizeY);
-            PrintEnumOptions(options);
+            return VehiclesRepository.Vehicles
+                .Select(vehicle => vehicle.Plate)
+                .Contains(plate);
         }
         private void PrintPopup(int sizeX, int sizeY)
         {
@@ -373,6 +366,11 @@ namespace DEV_Car_Console.Screens
 
             Console.Write("+");
         }
+        private void PrintEnums(int sizeX, int sizeY, string[] options)
+        {
+            PrintPopup(sizeX, sizeY);
+            PrintEnumOptions(options);
+        }
         private void PrintEnumOptions(string[] EnumOptions)
         {
             Console.SetCursorPosition(59, 6);
@@ -386,11 +384,13 @@ namespace DEV_Car_Console.Screens
                 row++;
             }
         }
-        private bool VerifyPlate(string plate)
+        private void PrintFooter(int lastRow)
         {
-            return VehiclesRepository.Vehicles
-                .Select(vehicle => vehicle.Plate)
-                .Contains(plate);
+            Console.SetCursorPosition(2, lastRow - 1);
+            Console.WriteLine("Veículo adicionado!");
+            Console.SetCursorPosition(2, lastRow);
+            Console.WriteLine("Pressione qualquer tecla para voltar");
+            var option = Console.ReadLine();
         }
     }
 }
