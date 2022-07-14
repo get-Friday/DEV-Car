@@ -37,7 +37,7 @@ class Program
         VehiclesRepository.Vehicles.Add(TT);
         VehiclesRepository.Vehicles.Add(Across);
 
-        PickupTruck Silverado = new(4, 2903, 288, ETypeFuel.Diesel, DateTime.Parse("18/09/2014"), "Silverado 1500", "SL400MA", 49620.0M, EColors.Preto, ETypeVehicle.Caminhonete);
+        PickupTruck Silverado = new(4, 2903, 288, ETypeFuel.Diesel, DateTime.Parse("18/09/2014"), "Silverado 1500", "SL400MA", 49620.0M, EColors.Roxo, ETypeVehicle.Caminhonete);
 
 
         VehiclesRepository.Vehicles.Add(Silverado);
