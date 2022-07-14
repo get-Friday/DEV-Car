@@ -163,7 +163,7 @@ namespace DEV_Car_Console.Screens
 
             Console.SetCursorPosition(3, 10);
             bool fuelTypeParse = ETypeFuel.TryParse<ETypeFuel>(Console.ReadLine(), out ETypeFuel fuelType);
-            if (!fuelTypeParse || (int) fuelType < 0 || (int) fuelType > 2)
+            if (!fuelTypeParse || (int) fuelType < 0 || (int) fuelType > 1)
             {
                 new MenuScreen().PrintError(27, "Combustível inválido");
                 return;
@@ -277,7 +277,7 @@ namespace DEV_Car_Console.Screens
             PrintEnums(25, 5, fuelOptions);
             Console.SetCursorPosition(3, 14);
             bool fuelTypeParse = ETypeFuel.TryParse<ETypeFuel>(Console.ReadLine(), out ETypeFuel fuelType);
-            if (!fuelTypeParse || (int) fuelType < 0 || (int) fuelType > 2)
+            if (!fuelTypeParse || (int) fuelType < 1 || (int) fuelType > 2)
             {
                 new MenuScreen().PrintError(27, "Combustível inválido");
                 return;
@@ -325,7 +325,7 @@ namespace DEV_Car_Console.Screens
 
             Console.SetCursorPosition(3, 24);
             bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
-            if (!colorParse || (int)color < 0 || (int)color > 5)
+            if (!colorParse || (int)color != 5)
             {
                 new MenuScreen().PrintError(27, "Cor inválida");
                 return;
@@ -388,11 +388,9 @@ namespace DEV_Car_Console.Screens
         }
         private bool VerifyPlate(string plate)
         {
-            bool query = VehiclesRepository.Vehicles
+            return VehiclesRepository.Vehicles
                 .Select(vehicle => vehicle.Plate)
                 .Contains(plate);
-
-            return query;
         }
     }
 }
