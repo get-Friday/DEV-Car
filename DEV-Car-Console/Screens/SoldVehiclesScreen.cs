@@ -7,7 +7,8 @@ namespace DEV_Car_Console.Screens
     {
         public void Start()
         {
-            IEnumerable<Vehicle> query = VehiclesRepository.Vehicles.Where(vehicle => vehicle.BuyerCPF != null);
+            IEnumerable<Vehicle> query = VehiclesRepository.Vehicles
+                .Where(vehicle => vehicle.BuyerCPF != null);
             int canvasSize = query.Count() * 2 + 15;
             string subHeaderText = "Veículos vendidos";
             int row = 7;
@@ -19,7 +20,7 @@ namespace DEV_Car_Console.Screens
             else
             {
                 PrintSold(query, canvasSize, subHeaderText, row);
-                MostLeastSold(query, canvasSize - 4);
+                MostLeastSold(canvasSize - 4);
                 Console.ReadLine();
             }
         }
@@ -39,17 +40,24 @@ namespace DEV_Car_Console.Screens
                 row += 2;
             }
         }
-        private void MostLeastSold(IEnumerable<Vehicle> query, int row)
+        private void MostLeastSold(int row)
         {
-            string? highestPrice = query.Max(e => e.ShowInfo());
-            string? lowestPrice = query.Min(e => e.ShowInfo());
+            decimal highestPrice = VehiclesRepository.Vehicles
+                .Where(vehicle => vehicle.BuyerCPF != null)
+                .Select(vehicle => vehicle.Value)
+                .Max();
+
+            decimal lowestPrice = VehiclesRepository.Vehicles
+                .Where(vehicle => vehicle.BuyerCPF != null)
+                .Select(vehicle => vehicle.Value)
+                .Min();
 
             Console.SetCursorPosition(2, row);
-            Console.WriteLine("Veículos vendidos por preço:");
+            Console.WriteLine("Preços de vendas:");
             Console.SetCursorPosition(2, row + 1);
-            Console.WriteLine($"$$$ {highestPrice}");
-            Console.SetCursorPosition(2, row + 3);
-            Console.WriteLine($" $  {lowestPrice}");
+            Console.WriteLine($"Maior valor: R${highestPrice}");
+            Console.SetCursorPosition(2, row + 2);
+            Console.WriteLine($"Menor valor: R${lowestPrice}");
         }
     }
 }
