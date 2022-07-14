@@ -10,33 +10,58 @@ namespace DEV_Car_Console.Screens
         {
             string subHeaderText = "Alterar informação do veículo veículo";
 
-            new MenuScreen().PrintMenu(20, 40, subHeaderText);
+            new MenuScreen().PrintMenu(20, 55, subHeaderText);
 
             Console.SetCursorPosition(2, 7);
             Console.WriteLine("Informe placa do veículo a alterar:");
             Console.SetCursorPosition(2, 8);
             string plate = Console.ReadLine();
+            if (plate == null)
+            {
+                new MenuScreen().PrintError(20, "Placa inválida");
+                return;
+            }
+            
+            if (VerifyPlate(plate))
+            {
+                Vehicle query = VehiclesRepository.Vehicles
+                    .ToList()
+                    .Find(vehicle => vehicle.Plate == plate);
 
-            Vehicle query = VehiclesRepository.Vehicles
-                .ToList()
-                .Find(vehicle => vehicle.Plate == plate);
+                string[] carData = { $"R${query.Value}", $"{query.Color}" };
+                PrintData(25, 5, 15, carData);
 
-            string[] carData = { $"R${query.Value}", $"{query.Color}" };
-            PrintData(25, 5, 15, carData);
+                Console.SetCursorPosition(2, 10);
+                Console.WriteLine("Novo preço:");
+                Console.SetCursorPosition(2, 12);
+                Console.WriteLine("Nova cor:");
 
-            Console.SetCursorPosition(2, 10);
-            Console.WriteLine("Novo preço:");
-            Console.SetCursorPosition(2, 12);
-            Console.WriteLine("Nova cor:");
+                Console.SetCursorPosition(2, 11);
+                bool valueParse = decimal.TryParse(Console.ReadLine(), out Decimal value);
+                if (!valueParse || value == 0)
+                {
+                    new MenuScreen().PrintError(20, "Valor inválido");
+                    return;
+                }
 
-            Console.SetCursorPosition(2, 11);
-            decimal value = decimal.Parse(Console.ReadLine());
+                string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
+                PrintEnums(25, 8, 5, colorsOptions);
 
-            string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
-            PrintEnums(25, 8, 5, colorsOptions);
+                Console.SetCursorPosition(2, 13);
+                bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
+                if (!colorParse || (query.Type == ETypeVehicle.Caminhonete && (int)color != 5) || ((int) color < 0 || (int) color > 5))
+                {
+                    new MenuScreen().PrintError(20, "Cor inválida");
+                    return;
+                }
 
-            Console.SetCursorPosition(2, 13);
-            EColors color = EColors.Parse<EColors>(Console.ReadLine());
+                query.ChangeInfo(value, color);
+            }
+            else
+            {
+                new MenuScreen().PrintError(20, "Placa inexistênte");
+                return;
+            }
         }
         private void PrintData(int sizeX, int sizeY, int positionY, string[] data)
         {
@@ -93,6 +118,12 @@ namespace DEV_Car_Console.Screens
                 Console.WriteLine($"{i} - {EnumOptions[i]}");
                 row++;
             }
+        }
+        private bool VerifyPlate(string plate)
+        {
+            return VehiclesRepository.Vehicles
+                .Select(vehicle => vehicle.Plate)
+                .Contains(plate);
         }
     }
 }
