@@ -15,22 +15,31 @@
                 "Histórico de transferências"
             };
 
-            PrintMenu(20, 35, subHeaderText, menuOptions, "Sair");
+            PrintMenu(20, 55, subHeaderText, menuOptions, "Sair");
 
-            var option = short.Parse(Console.ReadLine());
+            bool input = short.TryParse(Console.ReadLine(), out short option);
 
-            switch (option)
+            if (input)
             {
-                case 0: Environment.Exit(0); break;
-                case 1: new RegisterVehicleScreen().Start(); Start(); break;
-                case 2: new SellVehicleScreen().Start(); Start(); break;
-                case 3: new ChangeVehicleScreen().Start(); Start(); break;
-                case 4: new ShowVehiclesScreen().Start(); Start(); break;
-                case 5: new AvailableVehiclesScreen().Start(); Start(); break;
-                case 6: new SoldVehiclesScreen().Start(); Start(); break;
-                case 7: new TransferHistoryScreen().Start(); Start(); break;
-                default: Start(); break;
+                switch (option)
+                {
+                    case 0: Environment.Exit(0); break;
+                    case 1: new RegisterVehicleScreen().Start(); Start(); break;
+                    case 2: new SellVehicleScreen().Start(); Start(); break;
+                    case 3: new ChangeVehicleScreen().Start(); Start(); break;
+                    case 4: new ShowVehiclesScreen().Start(); Start(); break;
+                    case 5: new AvailableVehiclesScreen().Start(); Start(); break;
+                    case 6: new SoldVehiclesScreen().Start(); Start(); break;
+                    case 7: new TransferHistoryScreen().Start(); Start(); break;
+                    default: PrintError(20, "Opção inexistente"); Start(); break;
+                }
             }
+            else
+            {
+                PrintError(20, "Opção inválida");
+                Start();
+            }
+
         }
         public void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions, string footerOption)
         {
@@ -55,6 +64,12 @@
             ConfigureCanvas(canvasSizeY, CanvasSizeX);
             PrintHeader();
             ConfigureSubHeader(SubHeaderText);
+        }
+        public void PrintError(int positionY, string errorMessage)
+        {
+            Console.SetCursorPosition(2, positionY);
+            Console.WriteLine($"{errorMessage}. Pressione uma tecla para voltar");
+            var s = Console.ReadLine();
         }
         private void ConfigureCanvas(int sizeY, int sizeX)
         {

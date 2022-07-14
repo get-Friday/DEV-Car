@@ -12,14 +12,22 @@ namespace DEV_Car_Console.Screens
             string[] menuOptions = { "Moto/Triciclo", "Carro", "Caminhonete" };
             new MenuScreen().PrintMenu(20, 55, subHeaderText, menuOptions, "Voltar");
 
-            var options = short.Parse(Console.ReadLine());
+            bool input = short.TryParse(Console.ReadLine(), out short option);
 
-            switch (options)
+            if (input)
             {
-                case 1: RegisterBikeTricicle(); break;
-                case 2: RegisterCar(); break;
-                case 3: RegisterPickup(); break;
-                default: break;
+                switch (option)
+                {
+                    case 0: break;
+                    case 1: RegisterBikeTricicle(); break;
+                    case 2: RegisterCar(); break;
+                    case 3: RegisterPickup(); break;
+                    default: new MenuScreen().PrintError(20, "Opção inexistente"); Start(); break;
+                }
+            }
+            else
+            {
+                new MenuScreen().PrintError(20, "Opção inválida");
             }
         }
         private void PrintFooter(int lastRow)
@@ -44,25 +52,74 @@ namespace DEV_Car_Console.Screens
             };
             new MenuScreen().PrintMenu(27, 50, subHeaderText, menuOptions);
 
-            // Query start printintg a row 7
             Console.SetCursorPosition(3, 8);
-            int potency = int.Parse(Console.ReadLine());
+            bool potencyParse = int.TryParse(Console.ReadLine(), out int potency);
+            if (!potencyParse || potency == 0)
+            {
+                new MenuScreen().PrintError(27, "Potência inválida");
+                return;
+            }
+
             Console.SetCursorPosition(3, 10);
-            int qntWheels = int.Parse(Console.ReadLine());
+            bool qntWheelsParse = int.TryParse(Console.ReadLine(), out int qntWheels);
+            if (!qntWheelsParse)
+            {
+                new MenuScreen().PrintError(27, "Rodas inválidas");
+                return;
+            }
+            else if (qntWheels < 2 || qntWheels > 3)
+            {
+                new MenuScreen().PrintError(27, "Quantidade inválida");
+                return;
+            }
+
             Console.SetCursorPosition(3, 12);
-            DateTime fabricationDate = DateTime.Parse(Console.ReadLine());
+            bool fabricationDateParse = DateTime.TryParse(Console.ReadLine(), out DateTime fabricationDate);
+            if (!fabricationDateParse)
+            {
+                new MenuScreen().PrintError(27, "Data inválida");
+                return;
+            }
+
             Console.SetCursorPosition(3, 14);
             string name = Console.ReadLine();
+            if (name == null)
+            {
+                new MenuScreen().PrintError(27, "Nome inválido");
+                return;
+            }
+
             Console.SetCursorPosition(3, 16);
             string plate = Console.ReadLine();
+            if (plate == null)
+            {
+                new MenuScreen().PrintError(27, "Placa inválida");
+                return;
+            }
+            else if (VerifyPlate(plate))
+            {
+                new MenuScreen().PrintError(27, "Placa já existente");
+                return;
+            }
+
             Console.SetCursorPosition(3, 18);
-            decimal value = Decimal.Parse(Console.ReadLine());
-            
+            bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
+            if (!valueParse)
+            {
+                new MenuScreen().PrintError(27, "Valor inválido");
+                return;
+            }
+
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
             PrintEnums(25, 8, colorsOptions);
             
             Console.SetCursorPosition(3, 20);
-            EColors color = EColors.Parse<EColors>(Console.ReadLine());
+            bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
+            if (!colorParse || (int) color < 0 || (int) color > 5)
+            {
+                new MenuScreen().PrintError(27, "Cor inválida");
+                return;
+            }
 
             ETypeVehicle type = ETypeVehicle.MotoTriciclo;
 
@@ -89,29 +146,85 @@ namespace DEV_Car_Console.Screens
 
             // Query start printintg a row 7
             Console.SetCursorPosition(3, 8);
-            int totalDoors = int.Parse(Console.ReadLine());
-
-            string[] fuelOptions = { "Flex", "Gasolina", "Diesel"};
+            bool totalDoorsParse = int.TryParse(Console.ReadLine(), out int totalDoors);
+            if (!totalDoorsParse)
+            {
+                new MenuScreen().PrintError(27, "Portas inválidas");
+                return;
+            }
+            else if (totalDoors < 2 || totalDoors > 4)
+            {
+                new MenuScreen().PrintError(27, "Quantidade inválida");
+                return;
+            }
+            
+            string[] fuelOptions = { "Flex", "Gasolina", "Diesel" };
             PrintEnums(25, 5, fuelOptions);
 
             Console.SetCursorPosition(3, 10);
-            ETypeFuel fuelType = ETypeFuel.Parse<ETypeFuel>(Console.ReadLine());
+            bool fuelTypeParse = ETypeFuel.TryParse<ETypeFuel>(Console.ReadLine(), out ETypeFuel fuelType);
+            if (!fuelTypeParse || (int) fuelType < 0 || (int) fuelType > 2)
+            {
+                new MenuScreen().PrintError(27, "Combustível inválido");
+                return;
+            }
+
             Console.SetCursorPosition(3, 12);
-            int horsePower = int.Parse(Console.ReadLine());
+            bool horsePowerParse = int.TryParse(Console.ReadLine(), out int horsePower);
+            if (!horsePowerParse || horsePower == 0)
+            {
+                new MenuScreen().PrintError(27, "CVs inválidos");
+                return;
+            }
+
             Console.SetCursorPosition(3, 14);
-            DateTime fabricationDate = DateTime.Parse(Console.ReadLine());
+            bool fabricationDateParse = DateTime.TryParse(Console.ReadLine(), out DateTime fabricationDate);
+            if (fabricationDateParse)
+            {
+                new MenuScreen().PrintError(27, "Data inválida");
+                return;
+            }
+
             Console.SetCursorPosition(3, 16);
             string name = Console.ReadLine();
+            if (name == null)
+            {
+                new MenuScreen().PrintError(27, "Nome inválido");
+                return;
+            }
+
             Console.SetCursorPosition(3, 18);
             string plate = Console.ReadLine();
+            if (plate == null)
+            {
+                new MenuScreen().PrintError(27, "Nome inválido");
+                return;
+            }
+            else if (VerifyPlate(plate))
+            {
+                new MenuScreen().PrintError(27, "Placa já existente");
+                return;
+            }
+
             Console.SetCursorPosition(3, 20);
-            decimal value = Decimal.Parse(Console.ReadLine());
+            bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
+            if (!valueParse)
+            {
+                new MenuScreen().PrintError(27, "Valor inválido");
+                return;
+            }
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
             PrintEnums(25, 8, colorsOptions);
 
             Console.SetCursorPosition(3, 22);
-            EColors color = EColors.Parse<EColors>(Console.ReadLine());
+            bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
+            if(!colorParse || (int) color < 0 || (int) color > 5)
+            {
+                new MenuScreen().PrintError(27, "Cor inválida");
+                return;
+            }
+
             ETypeVehicle type = ETypeVehicle.Carro;
 
             Car car = new(totalDoors, fuelType, horsePower, fabricationDate, name, plate, value, color, type);
@@ -136,33 +249,88 @@ namespace DEV_Car_Console.Screens
             };
             new MenuScreen().PrintMenu(27, 50, subHeaderText, menuOptions);
 
-            // Query start printintg a row 7
             Console.SetCursorPosition(3, 8);
-            int totalDoors = int.Parse(Console.ReadLine());
+            bool totalDoorsParse = int.TryParse(Console.ReadLine(), out int totalDoors);
+            if (!totalDoorsParse || totalDoors < 2 || totalDoors > 6 )
+            {
+                new MenuScreen().PrintError(27, "Portas inválidas");
+                return;
+            }
+
             Console.SetCursorPosition(3, 10);
-            int cargoSizeLiters = int.Parse(Console.ReadLine());
+            bool cargoSizeLitersParse = int.TryParse(Console.ReadLine(), out int cargoSizeLiters);
+            if (!cargoSizeLitersParse)
+            {
+                new MenuScreen().PrintError(27, "Carga inválida");
+                return;
+            }
+
             Console.SetCursorPosition(3, 12);
-            int horsePower = int.Parse(Console.ReadLine());
+            bool horsePowerParse = int.TryParse(Console.ReadLine(), out int horsePower);
+            if (!horsePowerParse || horsePower == 0)
+            {
+                new MenuScreen().PrintError(27, "CVs inválidos");
+                return;
+            }
 
             string[] fuelOptions = { "Flex", "Gasolina", "Diesel" };
             PrintEnums(25, 5, fuelOptions);
-
             Console.SetCursorPosition(3, 14);
-            ETypeFuel fuelType = ETypeFuel.Parse<ETypeFuel>(Console.ReadLine());
+            bool fuelTypeParse = ETypeFuel.TryParse<ETypeFuel>(Console.ReadLine(), out ETypeFuel fuelType);
+            if (!fuelTypeParse || (int) fuelType < 0 || (int) fuelType > 2)
+            {
+                new MenuScreen().PrintError(27, "Combustível inválido");
+                return;
+            }
+
             Console.SetCursorPosition(3, 16);
-            DateTime fabricationDate = DateTime.Parse(Console.ReadLine());
+            bool fabricationDateParse = DateTime.TryParse(Console.ReadLine(), out DateTime fabricationDate);
+            if (!fabricationDateParse)
+            {
+                new MenuScreen().PrintError(27, "Data inválida");
+                return;
+            }
+
             Console.SetCursorPosition(3, 18);
             string name = Console.ReadLine();
+            if (name == null)
+            {
+                new MenuScreen().PrintError(27, "Nome inválido");
+                return;
+            }
+
             Console.SetCursorPosition(3, 20);
             string plate = Console.ReadLine();
+            if (plate == null)
+            {
+                new MenuScreen().PrintError(27, "Placa inválida");
+                return;
+            }
+            else if(VerifyPlate(plate))
+            {
+                new MenuScreen().PrintError(27, "Placa já existente");
+                return;
+            }
+
             Console.SetCursorPosition(3, 22);
-            decimal value = Decimal.Parse(Console.ReadLine());
+            bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
+            if (!valueParse)
+            {
+                new MenuScreen().PrintError(27, "Valor inválido");
+                return;
+            }
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
             PrintEnums(25, 8, colorsOptions);
 
             Console.SetCursorPosition(3, 24);
-            EColors color = EColors.Parse<EColors>(Console.ReadLine());
+            bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
+            if (!colorParse || (int)color < 0 || (int)color > 5)
+            {
+                new MenuScreen().PrintError(27, "Cor inválida");
+                return;
+            }
+
             ETypeVehicle type = ETypeVehicle.Caminhonete;
 
             PickupTruck pickup = new(totalDoors, cargoSizeLiters, horsePower, fuelType, fabricationDate, name, plate, value, color, type);
@@ -217,6 +385,14 @@ namespace DEV_Car_Console.Screens
                 Console.WriteLine($"{i} - {EnumOptions[i]}");
                 row++;
             }
+        }
+        private bool VerifyPlate(string plate)
+        {
+            bool query = VehiclesRepository.Vehicles
+                .Select(vehicle => vehicle.Plate)
+                .Contains(plate);
+
+            return query;
         }
     }
 }
