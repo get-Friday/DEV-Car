@@ -104,7 +104,7 @@ namespace DEV_Car_Console.Screens
 
             Console.SetCursorPosition(3, 18);
             bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
-            if (!valueParse)
+            if (!valueParse || value <= 0)
             {
                 new MenuScreen().PrintError(27, "Valor inválido");
                 return;
@@ -208,7 +208,7 @@ namespace DEV_Car_Console.Screens
 
             Console.SetCursorPosition(3, 20);
             bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
-            if (!valueParse)
+            if (!valueParse || value <= 0)
             {
                 new MenuScreen().PrintError(27, "Valor inválido");
                 return;
@@ -314,7 +314,7 @@ namespace DEV_Car_Console.Screens
 
             Console.SetCursorPosition(3, 22);
             bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
-            if (!valueParse)
+            if (!valueParse || value <= 0)
             {
                 new MenuScreen().PrintError(27, "Valor inválido");
                 return;
