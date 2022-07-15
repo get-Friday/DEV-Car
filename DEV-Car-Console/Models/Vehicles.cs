@@ -1,4 +1,5 @@
 ﻿using DEV_Car_Console.Enum;
+using DEV_Car_Console.Repository;
 
 namespace DEV_Car_Console.Models
 {
@@ -39,6 +40,27 @@ namespace DEV_Car_Console.Models
         {
             Value = value;
             Color = color;
+        }
+        public virtual bool IsValid()
+        {
+            if (
+                Name == null ||
+                Plate == null ||
+                Value <= 0 ||
+                ((int) Color < 0 || (int) Color > 5) ||
+                AlreadyExists(Plate)
+                )
+            {
+                return false;
+            }
+
+            return true;
+        }
+        private bool AlreadyExists(string plate)
+        {
+            return VehiclesRepository.Vehicles
+                .Select(vehicle => vehicle.Plate)
+                .Contains(plate);
         }
     }
 }

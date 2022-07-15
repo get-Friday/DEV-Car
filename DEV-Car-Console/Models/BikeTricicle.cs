@@ -22,5 +22,16 @@ namespace DEV_Car_Console.Models
         {
             return $"{base.ShowInfo()} \n| POTENCIA: {Potency}cc | RODAS: {QntWheels}";
         }
+        public override bool IsValid()
+        {
+            if (
+                Potency <= 0 ||
+                (QntWheels < 2 || QntWheels > 3)
+                )
+            {
+                return false;
+            }
+            return base.IsValid();
+        }
     }
 }

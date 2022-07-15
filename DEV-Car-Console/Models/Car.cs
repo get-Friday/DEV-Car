@@ -25,5 +25,17 @@ namespace DEV_Car_Console.Models
         {
             return $"{base.ShowInfo()} \n| PORTAS: {TotalDoors} | COMBUSTIVEL: {FuelType} | POTENCIA: {HorsePower}hp";
         }
+        public override bool IsValid()
+        {
+            if (
+                (TotalDoors < 2 || TotalDoors > 4) ||
+                ((int)FuelType < 0 || (int)FuelType > 1) ||
+                HorsePower <= 0
+                )
+            {
+                return false;
+            }
+            return base.IsValid();
+        }
     }
 }
