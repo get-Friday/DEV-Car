@@ -7,7 +7,8 @@ namespace DEV_Car_Console.Screens
     {
         public static void Start()
         {
-            IEnumerable<Vehicle> query = VehiclesRepository.Vehicles.Where(vehicle => vehicle.BuyerCPF == null);
+            IEnumerable<Vehicle> query = VehiclesRepository.Vehicles
+                .Where(vehicle => vehicle.BuyerCPF == null);
             
             string subHeaderText = "Veículos disponíveis pra compra";
             int canvasSize = query.Count() * 2 + 10;
