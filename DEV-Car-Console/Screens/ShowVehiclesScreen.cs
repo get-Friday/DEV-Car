@@ -23,6 +23,7 @@ namespace DEV_Car_Console.Screens
             {
                 switch (option)
                 {
+                    case 0: break;
                     case 1: ShowBikesTricicles(); break;
                     case 2: ShowCar(); break;
                     case 3: ShowPickupTruck(); break;
