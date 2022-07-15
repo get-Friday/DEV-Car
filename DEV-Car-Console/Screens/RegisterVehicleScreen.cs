@@ -30,8 +30,9 @@ namespace DEV_Car_Console.Screens
                 MenuScreen.PrintError(20, "Opção inválida");
             }
         }
-        private void RegisterBikeTricicle()
+        private static void RegisterBikeTricicle()
         {
+            int canvasSizeY = 27;
             string subHeaderText = "Registre Moto/Triciclo";
             string[] menuOptions = { 
                 "potência", 
@@ -42,88 +43,71 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(27, 50, subHeaderText, menuOptions);
+            MenuScreen.PrintMenu(canvasSizeY, 50, subHeaderText, menuOptions);
+
+            // Input user
 
             Console.SetCursorPosition(3, 8);
             bool potencyParse = int.TryParse(Console.ReadLine(), out int potency);
 
-            if (!potencyParse || potency <= 0)
-            {
-                MenuScreen.PrintError(27, "Potência inválida");
-                return;
-            }
-
             Console.SetCursorPosition(3, 10);
             bool qntWheelsParse = int.TryParse(Console.ReadLine(), out int qntWheels);
-            if (!qntWheelsParse)
-            {
-                MenuScreen.PrintError(27, "Rodas inválidas");
-                return;
-            }
-            else if (qntWheels < 2 || qntWheels > 3)
-            {
-                MenuScreen.PrintError(27, "Quantidade inválida");
-                return;
-            }
 
             Console.SetCursorPosition(3, 12);
             bool fabricationDateParse = DateTime.TryParse(Console.ReadLine(), out DateTime fabricationDate);
-            if (!fabricationDateParse)
-            {
-                MenuScreen.PrintError(27, "Data inválida");
-                return;
-            }
 
             Console.SetCursorPosition(3, 14);
             string name = Console.ReadLine();
-            if (name == null)
-            {
-                MenuScreen.PrintError(27, "Nome inválido");
-                return;
-            }
 
             Console.SetCursorPosition(3, 16);
             string plate = Console.ReadLine();
-            if (plate == null)
-            {
-                MenuScreen.PrintError(27, "Placa inválida");
-                return;
-            }
-            else if (VerifyPlate(plate))
-            {
-                MenuScreen.PrintError(27, "Placa já existente");
-                return;
-            }
 
             Console.SetCursorPosition(3, 18);
             bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
-            if (!valueParse || value <= 0)
-            {
-                MenuScreen.PrintError(27, "Valor inválido");
-                return;
-            }
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
             PrintEnums(25, 8, colorsOptions);
             
             Console.SetCursorPosition(3, 20);
             bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
-            if (!colorParse || (int) color < 0 || (int) color > 5)
+
+            // Verify inputs integrity
+
+            if (
+                !potencyParse ||
+                !qntWheelsParse ||
+                !fabricationDateParse ||
+                name == null ||
+                plate == null ||
+                !valueParse ||
+                !colorParse
+                )
             {
-                MenuScreen.PrintError(27, "Cor inválida");
+                MenuScreen.PrintError(canvasSizeY, "Campo inválido");
                 return;
             }
 
-            ETypeVehicle type = ETypeVehicle.MotoTriciclo;
+            // Instance vehicle
 
+            ETypeVehicle type = ETypeVehicle.MotoTriciclo;
             BikeTricicle bikeTricicle = new(potency, qntWheels, fabricationDate, name, plate, value, color, type);
 
-            VehiclesRepository.Vehicles.Add(bikeTricicle);
+            // Verify class integrity 
 
+            if (!bikeTricicle.IsValid())
+            {
+                MenuScreen.PrintError(canvasSizeY, "Campo inválido");
+                return;
+            }
+
+            // Push valid data to repository 
+
+            VehiclesRepository.Vehicles.Add(bikeTricicle);
             PrintFooter(27);
         }
-        private void RegisterCar()
+        private static void RegisterCar()
         {
+            int canvasSizeY = 27;
             string subHeaderText = "Registre Carro";
             string[] menuOptions = {
                 "quantidade de portas",
@@ -135,99 +119,78 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(27, 50, subHeaderText, menuOptions);
+            MenuScreen.PrintMenu(canvasSizeY, 50, subHeaderText, menuOptions);
 
-            // Query start printintg a row 7
+            // Input user
+
             Console.SetCursorPosition(3, 8);
             bool totalDoorsParse = int.TryParse(Console.ReadLine(), out int totalDoors);
-            if (!totalDoorsParse)
-            {
-                MenuScreen.PrintError(27, "Portas inválidas");
-                return;
-            }
-            else if (totalDoors < 2 || totalDoors > 4)
-            {
-                MenuScreen.PrintError(27, "Quantidade inválida");
-                return;
-            }
             
             string[] fuelOptions = { "Flex", "Gasolina", "Diesel" };
             PrintEnums(25, 5, fuelOptions);
 
             Console.SetCursorPosition(3, 10);
             bool fuelTypeParse = ETypeFuel.TryParse<ETypeFuel>(Console.ReadLine(), out ETypeFuel fuelType);
-            if (!fuelTypeParse || (int) fuelType < 0 || (int) fuelType > 1)
-            {
-                MenuScreen.PrintError(27, "Combustível inválido");
-                return;
-            }
 
             Console.SetCursorPosition(3, 12);
             bool horsePowerParse = int.TryParse(Console.ReadLine(), out int horsePower);
-            if (!horsePowerParse || horsePower == 0)
-            {
-                MenuScreen.PrintError(27, "CVs inválidos");
-                return;
-            }
 
             Console.SetCursorPosition(3, 14);
             bool fabricationDateParse = DateTime.TryParse(Console.ReadLine(), out DateTime fabricationDate);
-            if (fabricationDateParse)
-            {
-                MenuScreen.PrintError(27, "Data inválida");
-                return;
-            }
 
             Console.SetCursorPosition(3, 16);
             string name = Console.ReadLine();
-            if (name == null)
-            {
-                MenuScreen.PrintError(27, "Nome inválido");
-                return;
-            }
 
             Console.SetCursorPosition(3, 18);
             string plate = Console.ReadLine();
-            if (plate == null)
-            {
-                MenuScreen.PrintError(27, "Nome inválido");
-                return;
-            }
-            else if (VerifyPlate(plate))
-            {
-                MenuScreen.PrintError(27, "Placa já existente");
-                return;
-            }
 
             Console.SetCursorPosition(3, 20);
             bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
-            if (!valueParse || value <= 0)
-            {
-                MenuScreen.PrintError(27, "Valor inválido");
-                return;
-            }
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
             PrintEnums(25, 8, colorsOptions);
 
             Console.SetCursorPosition(3, 22);
             bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
-            if(!colorParse || (int) color < 0 || (int) color > 5)
+
+            // Verify inputs integrity
+
+            if (
+                !totalDoorsParse ||
+                !fuelTypeParse ||
+                !horsePowerParse ||
+                !fabricationDateParse ||
+                name == null ||
+                plate == null ||
+                !valueParse ||
+                !colorParse
+                )
             {
-                MenuScreen.PrintError(27, "Cor inválida");
+                MenuScreen.PrintError(canvasSizeY, "Campo inválido");
                 return;
             }
 
-            ETypeVehicle type = ETypeVehicle.Carro;
+            // Instance vehicle
 
+            ETypeVehicle type = ETypeVehicle.Carro;
             Car car = new(totalDoors, fuelType, horsePower, fabricationDate, name, plate, value, color, type);
 
-            VehiclesRepository.Vehicles.Add(car);
+            // Verify class integrity
 
+            if (!car.IsValid())
+            {
+                MenuScreen.PrintError(canvasSizeY, "Campo inválido");
+                return;
+            }
+
+            // Push valid data to repository
+
+            VehiclesRepository.Vehicles.Add(car);
             PrintFooter(27);
         }
-        private void RegisterPickup()
+        private static void RegisterPickup()
         {
+            int canvasSizeY = 27;
             string subHeaderText = "Registre Caminhonete";
             string[] menuOptions = {
                 "quantidade de portas",
@@ -240,105 +203,79 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(27, 50, subHeaderText, menuOptions);
+            MenuScreen.PrintMenu(canvasSizeY, 50, subHeaderText, menuOptions);
+
+            // Input user
 
             Console.SetCursorPosition(3, 8);
             bool totalDoorsParse = int.TryParse(Console.ReadLine(), out int totalDoors);
-            if (!totalDoorsParse || totalDoors < 2 || totalDoors > 6 )
-            {
-                MenuScreen.PrintError(27, "Portas inválidas");
-                return;
-            }
 
             Console.SetCursorPosition(3, 10);
             bool cargoSizeLitersParse = int.TryParse(Console.ReadLine(), out int cargoSizeLiters);
-            if (!cargoSizeLitersParse)
-            {
-                MenuScreen.PrintError(27, "Carga inválida");
-                return;
-            }
 
             Console.SetCursorPosition(3, 12);
             bool horsePowerParse = int.TryParse(Console.ReadLine(), out int horsePower);
-            if (!horsePowerParse || horsePower == 0)
-            {
-                MenuScreen.PrintError(27, "CVs inválidos");
-                return;
-            }
 
             string[] fuelOptions = { "Flex", "Gasolina", "Diesel" };
             PrintEnums(25, 5, fuelOptions);
             Console.SetCursorPosition(3, 14);
             bool fuelTypeParse = ETypeFuel.TryParse<ETypeFuel>(Console.ReadLine(), out ETypeFuel fuelType);
-            if (!fuelTypeParse || (int) fuelType < 1 || (int) fuelType > 2)
-            {
-                MenuScreen.PrintError(27, "Combustível inválido");
-                return;
-            }
 
             Console.SetCursorPosition(3, 16);
             bool fabricationDateParse = DateTime.TryParse(Console.ReadLine(), out DateTime fabricationDate);
-            if (!fabricationDateParse)
-            {
-                MenuScreen.PrintError(27, "Data inválida");
-                return;
-            }
 
             Console.SetCursorPosition(3, 18);
             string name = Console.ReadLine();
-            if (name == null)
-            {
-                MenuScreen.PrintError(27, "Nome inválido");
-                return;
-            }
 
             Console.SetCursorPosition(3, 20);
             string plate = Console.ReadLine();
-            if (plate == null)
-            {
-                MenuScreen.PrintError(27, "Placa inválida");
-                return;
-            }
-            else if(VerifyPlate(plate))
-            {
-                MenuScreen.PrintError(27, "Placa já existente");
-                return;
-            }
 
             Console.SetCursorPosition(3, 22);
             bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
-            if (!valueParse || value <= 0)
-            {
-                MenuScreen.PrintError(27, "Valor inválido");
-                return;
-            }
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
             PrintEnums(25, 8, colorsOptions);
 
             Console.SetCursorPosition(3, 24);
             bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
-            if (!colorParse || (int)color != 5)
+
+            // Verify inputs integrity
+
+            if (
+                !totalDoorsParse ||
+                !cargoSizeLitersParse ||
+                !horsePowerParse ||
+                !fuelTypeParse ||
+                !fabricationDateParse ||
+                name == null ||
+                plate == null ||
+                !valueParse ||
+                !colorParse
+                )
             {
-                MenuScreen.PrintError(27, "Cor inválida");
+                MenuScreen.PrintError(canvasSizeY, "Campo inválido");
                 return;
             }
 
-            ETypeVehicle type = ETypeVehicle.Caminhonete;
+            // Instance vehicle
 
+            ETypeVehicle type = ETypeVehicle.Caminhonete;
             PickupTruck pickup = new(totalDoors, cargoSizeLiters, horsePower, fuelType, fabricationDate, name, plate, value, color, type);
 
-            VehiclesRepository.Vehicles.Add(pickup);
+            // Verify class integrity
 
+            if (!pickup.IsValid())
+            {
+                MenuScreen.PrintError(canvasSizeY, "Campo inválido");
+                return;
+            }
+
+            // Push valid data to repository
+
+            VehiclesRepository.Vehicles.Add(pickup);
             PrintFooter(27);
         }
-        private bool VerifyPlate(string plate)
-        {
-            return VehiclesRepository.Vehicles
-                .Select(vehicle => vehicle.Plate)
-                .Contains(plate);
-        }
-        private void PrintPopup(int sizeX, int sizeY)
+        private static void PrintPopup(int sizeX, int sizeY)
         {
             Console.SetCursorPosition(57, 5);
             Console.Write("+");
@@ -367,12 +304,12 @@ namespace DEV_Car_Console.Screens
 
             Console.Write("+");
         }
-        private void PrintEnums(int sizeX, int sizeY, string[] options)
+        private static void PrintEnums(int sizeX, int sizeY, string[] options)
         {
             PrintPopup(sizeX, sizeY);
             PrintEnumOptions(options);
         }
-        private void PrintEnumOptions(string[] EnumOptions)
+        private static void PrintEnumOptions(string[] EnumOptions)
         {
             Console.SetCursorPosition(59, 6);
             Console.WriteLine("Usar código de cada cor: ");
@@ -385,18 +322,13 @@ namespace DEV_Car_Console.Screens
                 row++;
             }
         }
-        private void PrintFooter(int lastRow)
+        private static void PrintFooter(int lastRow)
         {
             Console.SetCursorPosition(2, lastRow - 1);
             Console.WriteLine("Veículo adicionado!");
             Console.SetCursorPosition(2, lastRow);
             Console.WriteLine("Pressione qualquer tecla para voltar");
             var option = Console.ReadLine();
-        }
-        private void IsValid()
-        {
-            // TODO
-            // pegar os ifs que validam o INPUT
         }
     }
 }
