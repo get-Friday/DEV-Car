@@ -20,7 +20,7 @@ namespace DEV_Car_Console.Screens
             else
             {
                 PrintSold(query, canvasSize, subHeaderText, row);
-                MostLeastSold(canvasSize - 4);
+                MostLeastSold(canvasSize - 5);
                 Console.ReadLine();
             }
         }
@@ -47,17 +47,23 @@ namespace DEV_Car_Console.Screens
                 .Select(vehicle => vehicle.Value)
                 .Max();
 
+            IEnumerable<Vehicle> mostExpensiveVehicle = VehiclesRepository.Vehicles
+                .Where(vehicle => vehicle.Value == highestPrice);
+
             Decimal lowestPrice = VehiclesRepository.Vehicles
                 .Where(vehicle => vehicle.BuyerCPF != null)
                 .Select(vehicle => vehicle.Value)
                 .Min();
 
+            IEnumerable<Vehicle> leastExpensiveVehicle = VehiclesRepository.Vehicles
+                .Where(vehicle => vehicle.Value == lowestPrice);
+
             Console.SetCursorPosition(2, row);
-            Console.WriteLine("Preços de vendas:");
+            Console.WriteLine("Maior / Menor preço");
             Console.SetCursorPosition(2, row + 1);
-            Console.WriteLine($"Maior valor: R${highestPrice}");
-            Console.SetCursorPosition(2, row + 2);
-            Console.WriteLine($"Menor valor: R${lowestPrice}");
+            Console.WriteLine($"$$$: {mostExpensiveVehicle.First().ShowInfo()}");
+            Console.SetCursorPosition(2, row + 3);
+            Console.WriteLine($" $ : {leastExpensiveVehicle.First().ShowInfo()}");
         }
     }
 }
