@@ -63,7 +63,7 @@ namespace DEV_Car_Console.Screens
             bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
-            PrintEnums(26, 8, canvasSizeX + 6, canvasSizeY - 15, colorsOptions);
+            MenuScreen.PrintEnums(26, 8, canvasSizeX + 6, canvasSizeY - 15, colorsOptions, "Cor");
 
             Console.SetCursorPosition(2, 13);
             bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
@@ -97,7 +97,7 @@ namespace DEV_Car_Console.Screens
             // 123
             // | text
 
-            PrintPopup(sizeX, sizeY, positionX - 3, positionY);
+            MenuScreen.PrintPopup(sizeX, sizeY, positionX - 3, positionY);
 
             Console.SetCursorPosition(positionX, positionY + 1);
             Console.WriteLine("Valor e cor do veículo");
@@ -107,51 +107,6 @@ namespace DEV_Car_Console.Screens
             {
                 Console.SetCursorPosition(positionX, row);
                 Console.WriteLine($"{data[i]}");
-                row++;
-            }
-        }
-        private static void PrintEnums(int sizeX, int sizeY, int positionX, int positionY, string[] options)
-        {
-            // Popup has always to be 3 units away from text:
-            // 123
-            // | text
-
-            PrintPopup(sizeX, sizeY, positionX - 3, positionY);
-            PrintEnumOptions(options, positionX, positionY);
-        }
-        private static void PrintPopup(int sizeX, int sizeY, int positionX, int positionY)
-        {
-            Console.SetCursorPosition(positionX, positionY);
-            Console.Write("+");
-            for (int i = 0; i <= sizeX; i++)
-                Console.Write("-");
-            Console.Write("+");
-
-            for (int i = 0; i < sizeY; i++)
-            {
-                Console.SetCursorPosition(positionX, i + positionY + 1);
-                Console.Write("|");
-                for (int line = 0; line <= sizeX; line++)
-                    Console.Write(" ");
-                Console.Write("|");
-            }
-
-            Console.SetCursorPosition(positionX, sizeY + positionY + 1);
-            Console.Write("+");
-            for (int i = 0; i <= sizeX; i++)
-                Console.Write("-");
-            Console.Write("+");
-        }
-        private static void PrintEnumOptions(string[] EnumOptions, int positionX, int positionY)
-        {
-            Console.SetCursorPosition(positionX, positionY + 1);
-            Console.WriteLine("Usar código de cada cor: ");
-
-            int row = positionY + 2;
-            for (int i = 0; i < EnumOptions.Length; i++)
-            {
-                Console.SetCursorPosition(positionX, row);
-                Console.WriteLine($"{i} - {EnumOptions[i]}");
                 row++;
             }
         }

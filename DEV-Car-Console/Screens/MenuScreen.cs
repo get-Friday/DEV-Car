@@ -71,6 +71,51 @@
             Console.WriteLine($"{errorMessage}. Pressione uma tecla para voltar");
             var s = Console.ReadLine();
         }
+        public static void PrintPopup(int sizeX, int sizeY, int positionX, int positionY)
+        {
+            Console.SetCursorPosition(positionX, positionY);
+            Console.Write("+");
+            for (int i = 0; i <= sizeX; i++)
+                Console.Write("-");
+            Console.Write("+");
+
+            for (int i = 0; i < sizeY; i++)
+            {
+                Console.SetCursorPosition(positionX, i + positionY + 1);
+                Console.Write("|");
+                for (int line = 0; line <= sizeX; line++)
+                    Console.Write(" ");
+                Console.Write("|");
+            }
+
+            Console.SetCursorPosition(positionX, sizeY + positionY + 1);
+            Console.Write("+");
+            for (int i = 0; i <= sizeX; i++)
+                Console.Write("-");
+            Console.Write("+");
+        }
+        public static void PrintEnums(int sizeX, int sizeY, int positionX, int positionY, string[] options, string type)
+        {
+            // Popup has always to be 3 units away from text:
+            // 123
+            // | text
+
+            PrintPopup(sizeX, sizeY, positionX - 3, positionY);
+            PrintEnumOptions(options, type, positionX, positionY);
+        }
+        private static void PrintEnumOptions(string[] options, string type, int positionX, int positionY)
+        {
+            Console.SetCursorPosition(positionX, positionY + 1);
+            Console.WriteLine($"Código {type}: ");
+
+            int row = positionY + 2;
+            for (int i = 0; i < options.Length; i++)
+            {
+                Console.SetCursorPosition(positionX, row);
+                Console.WriteLine($"{i} - {options[i]}");
+                row++;
+            }
+        }
         private static void ConfigureCanvas(int sizeY, int sizeX)
         {
             PrintHorizontalLine(sizeX);

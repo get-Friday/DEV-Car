@@ -33,6 +33,7 @@ namespace DEV_Car_Console.Screens
         private static void RegisterBikeTricicle()
         {
             int canvasSizeY = 27;
+            int canvasSizeX = 50;
             string subHeaderText = "Registre Moto/Triciclo";
             string[] menuOptions = { 
                 "potência", 
@@ -43,7 +44,7 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(canvasSizeY, 50, subHeaderText, menuOptions);
+            MenuScreen.PrintMenu(canvasSizeY, canvasSizeX, subHeaderText, menuOptions);
 
             // Input user
 
@@ -66,8 +67,8 @@ namespace DEV_Car_Console.Screens
             bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
-            PrintEnums(25, 8, colorsOptions);
-            
+            MenuScreen.PrintEnums(25, 8, canvasSizeX + 9, canvasSizeY - 21, colorsOptions, "Cor");
+
             Console.SetCursorPosition(3, 20);
             bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
 
@@ -116,6 +117,7 @@ namespace DEV_Car_Console.Screens
         private static void RegisterCar()
         {
             int canvasSizeY = 27;
+            int canvasSizeX = 50;
             string subHeaderText = "Registre Carro";
             string[] menuOptions = {
                 "quantidade de portas",
@@ -127,7 +129,7 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(canvasSizeY, 50, subHeaderText, menuOptions);
+            MenuScreen.PrintMenu(canvasSizeY, canvasSizeX, subHeaderText, menuOptions);
 
             // Input user
 
@@ -135,7 +137,7 @@ namespace DEV_Car_Console.Screens
             bool totalDoorsParse = int.TryParse(Console.ReadLine(), out int totalDoors);
             
             string[] fuelOptions = { "Flex", "Gasolina", "Diesel" };
-            PrintEnums(25, 5, fuelOptions);
+            MenuScreen.PrintEnums(25, 8, canvasSizeX + 9, canvasSizeY - 21, fuelOptions, "Combustível");
 
             Console.SetCursorPosition(3, 10);
             bool fuelTypeParse = ETypeFuel.TryParse<ETypeFuel>(Console.ReadLine(), out ETypeFuel fuelType);
@@ -156,7 +158,7 @@ namespace DEV_Car_Console.Screens
             bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
-            PrintEnums(25, 8, colorsOptions);
+            MenuScreen.PrintEnums(25, 8, canvasSizeX + 9, canvasSizeY - 21, colorsOptions, "Cor");
 
             Console.SetCursorPosition(3, 22);
             bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
@@ -207,6 +209,7 @@ namespace DEV_Car_Console.Screens
         private static void RegisterPickup()
         {
             int canvasSizeY = 27;
+            int canvasSizeX = 50;
             string subHeaderText = "Registre Caminhonete";
             string[] menuOptions = {
                 "quantidade de portas",
@@ -219,7 +222,7 @@ namespace DEV_Car_Console.Screens
                 "valor",
                 "cor"
             };
-            MenuScreen.PrintMenu(canvasSizeY, 50, subHeaderText, menuOptions);
+            MenuScreen.PrintMenu(canvasSizeY, canvasSizeX, subHeaderText, menuOptions);
 
             // Input user
 
@@ -233,7 +236,8 @@ namespace DEV_Car_Console.Screens
             bool horsePowerParse = int.TryParse(Console.ReadLine(), out int horsePower);
 
             string[] fuelOptions = { "Flex", "Gasolina", "Diesel" };
-            PrintEnums(25, 5, fuelOptions);
+            MenuScreen.PrintEnums(25, 8, canvasSizeX + 9, canvasSizeY - 21, fuelOptions, "Combustível");
+
             Console.SetCursorPosition(3, 14);
             bool fuelTypeParse = ETypeFuel.TryParse<ETypeFuel>(Console.ReadLine(), out ETypeFuel fuelType);
 
@@ -250,7 +254,7 @@ namespace DEV_Car_Console.Screens
             bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
-            PrintEnums(25, 8, colorsOptions);
+            MenuScreen.PrintEnums(25, 8, canvasSizeX + 9, canvasSizeY - 21, colorsOptions, "Cor");
 
             Console.SetCursorPosition(3, 24);
             bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
@@ -299,52 +303,11 @@ namespace DEV_Car_Console.Screens
             VehiclesRepository.Vehicles.Add(pickup);
             PrintFooter(27);
         }
-        private static void PrintPopup(int sizeX, int sizeY)
+        private static bool VerifyPlate(string plate)
         {
-            Console.SetCursorPosition(57, 5);
-            Console.Write("+");
-
-            for (int i = 0; i <= sizeX; i++)
-                System.Console.Write("-");
-
-            Console.Write("+");
-
-            for (int i = 0; i < sizeY; i++)
-            {
-                Console.SetCursorPosition(57, i + 6);
-                Console.Write("|");
-
-                for (int line = 0; line <= sizeX; line++)
-                    Console.Write(" ");
-
-                Console.Write("|");
-            }
-
-            Console.SetCursorPosition(57, sizeY + 6);
-            Console.Write("+");
-
-            for (int i = 0; i <= sizeX; i++)
-                System.Console.Write("-");
-
-            Console.Write("+");
-        }
-        private static void PrintEnums(int sizeX, int sizeY, string[] options)
-        {
-            PrintPopup(sizeX, sizeY);
-            PrintEnumOptions(options);
-        }
-        private static void PrintEnumOptions(string[] EnumOptions)
-        {
-            Console.SetCursorPosition(59, 6);
-            Console.WriteLine("Usar código de cada cor: ");
-            
-            int row = 8;
-            for (int i = 0; i < EnumOptions.Length; i++)
-            {
-                Console.SetCursorPosition(59, row);
-                Console.WriteLine($"{i} - {EnumOptions[i]}");
-                row++;
-            }
+            return VehiclesRepository.Vehicles
+                .Select(vehicle => vehicle.Plate)
+                .Contains(plate);
         }
         private static void PrintFooter(int lastRow)
         {
@@ -353,12 +316,6 @@ namespace DEV_Car_Console.Screens
             Console.SetCursorPosition(2, lastRow);
             Console.WriteLine("Pressione qualquer tecla para voltar");
             var option = Console.ReadLine();
-        }
-        private static bool VerifyPlate(string plate)
-        {
-            return VehiclesRepository.Vehicles
-                .Select(vehicle => vehicle.Plate)
-                .Contains(plate);
         }
     }
 }
