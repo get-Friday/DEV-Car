@@ -13,7 +13,7 @@ namespace DEV_Car_Console.Models
                    DateTime fabricationDate,
                    string name,
                    string plate,
-                   decimal value,
+                   Decimal value,
                    EColors color,
                    ETypeVehicle type) : base(fabricationDate, name, plate, value, color, type)
         {

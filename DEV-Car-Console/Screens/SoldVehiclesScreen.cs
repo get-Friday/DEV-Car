@@ -42,12 +42,12 @@ namespace DEV_Car_Console.Screens
         }
         private static void MostLeastSold(int row)
         {
-            decimal highestPrice = VehiclesRepository.Vehicles
+            Decimal highestPrice = VehiclesRepository.Vehicles
                 .Where(vehicle => vehicle.BuyerCPF != null)
                 .Select(vehicle => vehicle.Value)
                 .Max();
 
-            decimal lowestPrice = VehiclesRepository.Vehicles
+            Decimal lowestPrice = VehiclesRepository.Vehicles
                 .Where(vehicle => vehicle.BuyerCPF != null)
                 .Select(vehicle => vehicle.Value)
                 .Min();

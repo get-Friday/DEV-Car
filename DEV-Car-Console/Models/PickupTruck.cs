@@ -15,7 +15,7 @@ namespace DEV_Car_Console.Models
                            DateTime fabricationDate,
                            string name,
                            string plate,
-                           decimal value,
+                           Decimal value,
                            EColors color,
                            ETypeVehicle type) : base(fabricationDate, name, plate, value, color, type)
         {
@@ -34,7 +34,8 @@ namespace DEV_Car_Console.Models
                 (TotalDoors < 2 || TotalDoors > 6) ||
                 CargoSizeLiters < 0 ||
                 HorsePower <= 0 ||
-                ((int)TypeFuel < 1 || (int)TypeFuel > 2)
+                ((int)TypeFuel < 1 || (int)TypeFuel > 2) ||
+                Color != EColors.Roxo
                 )
             {
                 return false;
