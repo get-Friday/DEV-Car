@@ -13,9 +13,9 @@ namespace DEV_Car_Console.Models
                    DateTime fabricationDate,
                    string name,
                    string plate,
-                   Decimal value,
+                   Decimal price,
                    EColors color,
-                   ETypeVehicle type) : base(fabricationDate, name, plate, value, color, type)
+                   ETypeVehicle type) : base(fabricationDate, name, plate, price, color, type)
         {
             TotalDoors = totalDoors;
             FuelType = fuelType;

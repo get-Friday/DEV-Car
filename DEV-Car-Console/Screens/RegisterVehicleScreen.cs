@@ -64,7 +64,7 @@ namespace DEV_Car_Console.Screens
             string plate = Console.ReadLine();
 
             Console.SetCursorPosition(3, 18);
-            bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
+            bool priceParse = Decimal.TryParse(Console.ReadLine(), out Decimal price);
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
             MenuScreen.PrintEnums(25, 8, canvasSizeX + 9, canvasSizeY - 21, colorsOptions, "Cor");
@@ -80,7 +80,7 @@ namespace DEV_Car_Console.Screens
                 !fabricationDateParse ||
                 name == null ||
                 plate == null ||
-                !valueParse ||
+                !priceParse ||
                 !colorParse
                 )
             {
@@ -99,7 +99,7 @@ namespace DEV_Car_Console.Screens
             // Instance vehicle
 
             ETypeVehicle type = ETypeVehicle.MotoTriciclo;
-            BikeTricicle bikeTricicle = new(potency, qntWheels, fabricationDate, name, plate, value, color, type);
+            BikeTricicle bikeTricicle = new(potency, qntWheels, fabricationDate, name, plate, price, color, type);
 
             // Verify class integrity 
 
@@ -155,7 +155,7 @@ namespace DEV_Car_Console.Screens
             string plate = Console.ReadLine();
 
             Console.SetCursorPosition(3, 20);
-            bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
+            bool priceParse = Decimal.TryParse(Console.ReadLine(), out Decimal price);
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
             MenuScreen.PrintEnums(25, 8, canvasSizeX + 9, canvasSizeY - 21, colorsOptions, "Cor");
@@ -172,7 +172,7 @@ namespace DEV_Car_Console.Screens
                 !fabricationDateParse ||
                 name == null ||
                 plate == null ||
-                !valueParse ||
+                !priceParse ||
                 !colorParse
                 )
             {
@@ -191,7 +191,7 @@ namespace DEV_Car_Console.Screens
             // Instance vehicle
 
             ETypeVehicle type = ETypeVehicle.Carro;
-            Car car = new(totalDoors, fuelType, horsePower, fabricationDate, name, plate, value, color, type);
+            Car car = new(totalDoors, fuelType, horsePower, fabricationDate, name, plate, price, color, type);
 
             // Verify class integrity
 
@@ -251,7 +251,7 @@ namespace DEV_Car_Console.Screens
             string plate = Console.ReadLine();
 
             Console.SetCursorPosition(3, 22);
-            bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
+            bool priceParse = Decimal.TryParse(Console.ReadLine(), out Decimal price);
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
             MenuScreen.PrintEnums(25, 8, canvasSizeX + 9, canvasSizeY - 21, colorsOptions, "Cor");
@@ -269,7 +269,7 @@ namespace DEV_Car_Console.Screens
                 !fabricationDateParse ||
                 name == null ||
                 plate == null ||
-                !valueParse ||
+                !priceParse ||
                 !colorParse
                 )
             {
@@ -288,7 +288,7 @@ namespace DEV_Car_Console.Screens
             // Instance vehicle
 
             ETypeVehicle type = ETypeVehicle.Caminhonete;
-            PickupTruck pickup = new(totalDoors, cargoSizeLiters, horsePower, fuelType, fabricationDate, name, plate, value, color, type);
+            PickupTruck pickup = new(totalDoors, cargoSizeLiters, horsePower, fuelType, fabricationDate, name, plate, price, color, type);
 
             // Verify class integrity
 

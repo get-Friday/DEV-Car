@@ -4,13 +4,13 @@
     {
         private string VehicleData { get; set; }
         private int? BuyerCPF { get; set; }
-        private Decimal Value { get; set; }
+        private Decimal Price { get; set; }
         private DateTime Date { get; set; }
         public Financial(Vehicle vehicle, DateTime date)
         {
             VehicleData = vehicle.ShowInfo();
             BuyerCPF = vehicle.BuyerCPF;
-            Value = vehicle.Value;
+            Price = vehicle.Price;
             Date = date;
         }
         public string ShowInfo()

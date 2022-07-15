@@ -9,14 +9,14 @@ namespace DEV_Car_Console.Models
         public DateTime FabricationDate { get; private set; }
         public string Name { get; private set; }
         public string Plate { get; private set; }
-        public Decimal Value { get; private set; }
+        public Decimal Price { get; private set; }
         public int? BuyerCPF { get; private set; }
         public EColors Color { get; private set; }
         public ETypeVehicle Type { get; private set; }
         public Vehicle(DateTime fabricationDate,
                        string name,
                        string plate,
-                       Decimal value,
+                       Decimal price,
                        EColors color,
                        ETypeVehicle type)
         {
@@ -24,7 +24,7 @@ namespace DEV_Car_Console.Models
             FabricationDate = fabricationDate;
             Name = name;
             Plate = plate;
-            Value = value;
+            Price = price;
             Color = color;
             Type = type;
         }
@@ -34,11 +34,11 @@ namespace DEV_Car_Console.Models
         }
         public virtual string ShowInfo()
         {
-            return $"> NOME: {Name} | PLACA: {Plate} | VALOR: R${Value} | COR: {Color}";
+            return $"> NOME: {Name} | PLACA: {Plate} | VALOR: R${Price} | COR: {Color}";
         }
-        public void ChangeInfo(Decimal value, EColors color)
+        public void ChangeInfo(Decimal price, EColors color)
         {
-            Value = value;
+            Price = price;
             Color = color;
         }
         public virtual bool IsValid()
@@ -46,7 +46,7 @@ namespace DEV_Car_Console.Models
             if (
                 Name == null ||
                 Plate == null ||
-                Value <= 0 ||
+                Price <= 0 ||
                 ((int) Color < 0 || (int) Color > 5)
                 )
             {

@@ -44,19 +44,19 @@ namespace DEV_Car_Console.Screens
         {
             Decimal highestPrice = VehiclesRepository.Vehicles
                 .Where(vehicle => vehicle.BuyerCPF != null)
-                .Select(vehicle => vehicle.Value)
+                .Select(vehicle => vehicle.Price)
                 .Max();
 
             IEnumerable<Vehicle> mostExpensiveVehicle = VehiclesRepository.Vehicles
-                .Where(vehicle => vehicle.Value == highestPrice);
+                .Where(vehicle => vehicle.Price == highestPrice);
 
             Decimal lowestPrice = VehiclesRepository.Vehicles
                 .Where(vehicle => vehicle.BuyerCPF != null)
-                .Select(vehicle => vehicle.Value)
+                .Select(vehicle => vehicle.Price)
                 .Min();
 
             IEnumerable<Vehicle> leastExpensiveVehicle = VehiclesRepository.Vehicles
-                .Where(vehicle => vehicle.Value == lowestPrice);
+                .Where(vehicle => vehicle.Price == lowestPrice);
 
             Console.SetCursorPosition(2, row);
             Console.WriteLine("Maior / Menor preço");

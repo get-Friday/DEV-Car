@@ -47,12 +47,12 @@ namespace DEV_Car_Console.Screens
 
             // Print found data
 
-            Decimal oldValue = query.Value;
+            Decimal oldPrice = query.Price;
             EColors oldColor = query.Color;
-            string[] carData = { $"R${oldValue}", $"{oldColor}" };
+            string[] carData = { $"R${oldPrice}", $"{oldColor}" };
             PrintData(26, 5, canvasSizeX + 6, canvasSizeY - 5, carData);
 
-            // Values to change input
+            // Prices to change input
 
             Console.SetCursorPosition(2, 10);
             Console.WriteLine("Novo preço:");
@@ -60,7 +60,7 @@ namespace DEV_Car_Console.Screens
             Console.WriteLine("Nova cor:");
 
             Console.SetCursorPosition(2, 11);
-            bool valueParse = Decimal.TryParse(Console.ReadLine(), out Decimal value);
+            bool priceParse = Decimal.TryParse(Console.ReadLine(), out Decimal price);
 
             string[] colorsOptions = { "Branco", "Preto", "Cinza", "Prata", "Vermelho", "Roxo" };
             MenuScreen.PrintEnums(26, 8, canvasSizeX + 6, canvasSizeY - 15, colorsOptions, "Cor");
@@ -70,23 +70,23 @@ namespace DEV_Car_Console.Screens
 
             // Verify inputs integrity
 
-            if (!valueParse || !colorParse)
+            if (!priceParse || !colorParse)
             {
                 MenuScreen.PrintError(canvasSizeY, "Campo inválido");
                 return;
             }
 
-            // Changes values
+            // Changes prices
 
-            query.ChangeInfo(value, color);
+            query.ChangeInfo(price, color);
 
             // Verify class integrity
 
             if (!query.IsValid())
             {
-                // Changes values back
+                // Changes prices back
 
-                query.ChangeInfo(oldValue, oldColor);
+                query.ChangeInfo(oldPrice, oldColor);
 
                 MenuScreen.PrintError(canvasSizeY, "Mudança inválida, revertendo");
             }

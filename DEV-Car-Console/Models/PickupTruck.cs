@@ -2,7 +2,7 @@
 
 namespace DEV_Car_Console.Models
 {
-    internal class PickupTruck : Vehicle
+    public class PickupTruck : Vehicle
     {
         public int TotalDoors { get; private set; }
         public int CargoSizeLiters { get; private set; }
@@ -15,9 +15,9 @@ namespace DEV_Car_Console.Models
                            DateTime fabricationDate,
                            string name,
                            string plate,
-                           Decimal value,
+                           Decimal price,
                            EColors color,
-                           ETypeVehicle type) : base(fabricationDate, name, plate, value, color, type)
+                           ETypeVehicle type) : base(fabricationDate, name, plate, price, color, type)
         {
             TotalDoors = totalDoors;
             CargoSizeLiters = cargoSizeLiters;
