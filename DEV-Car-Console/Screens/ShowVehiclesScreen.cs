@@ -17,9 +17,9 @@ namespace DEV_Car_Console.Screens
             };
             MenuScreen.PrintMenu(17, 35, subHeaderText, menuOptions, "Voltar");
 
-            bool optionSuccess = short.TryParse(Console.ReadLine(), out short option);
+            bool input = short.TryParse(Console.ReadLine(), out short option);
 
-            if (optionSuccess)
+            if (input)
             {
                 switch (option)
                 {
