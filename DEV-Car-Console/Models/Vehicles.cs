@@ -9,14 +9,14 @@ namespace DEV_Car_Console.Models
         public DateTime FabricationDate { get; set; }
         public string Name { get; set; }
         public string Plate { get; set; }
-        public decimal Value { get; set; }
+        public Decimal Value { get; set; }
         public int? BuyerCPF { get; set; }
         public EColors Color { get; set; }
         public ETypeVehicle Type { get; set; }
         public Vehicle(DateTime fabricationDate,
                        string name,
                        string plate,
-                       decimal value,
+                       Decimal value,
                        EColors color,
                        ETypeVehicle type)
         {
@@ -36,7 +36,7 @@ namespace DEV_Car_Console.Models
         {
             return $"> NOME: {Name} | PLACA: {Plate} | VALOR: R${Value} | COR: {Color}";
         }
-        public void ChangeInfo(decimal value, EColors color)
+        public void ChangeInfo(Decimal value, EColors color)
         {
             Value = value;
             Color = color;
@@ -47,20 +47,13 @@ namespace DEV_Car_Console.Models
                 Name == null ||
                 Plate == null ||
                 Value <= 0 ||
-                ((int) Color < 0 || (int) Color > 5) ||
-                AlreadyExists(Plate)
+                ((int) Color < 0 || (int) Color > 5)
                 )
             {
                 return false;
             }
 
             return true;
-        }
-        private bool AlreadyExists(string plate)
-        {
-            return VehiclesRepository.Vehicles
-                .Select(vehicle => vehicle.Plate)
-                .Contains(plate);
         }
     }
 }
