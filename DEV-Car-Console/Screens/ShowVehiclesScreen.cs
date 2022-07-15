@@ -17,15 +17,22 @@ namespace DEV_Car_Console.Screens
             };
             MenuScreen.PrintMenu(17, 35, subHeaderText, menuOptions, "Voltar");
 
-            var option = short.Parse(Console.ReadLine());
+            bool optionSuccess = short.TryParse(Console.ReadLine(), out short option);
 
-            switch (option)
+            if (optionSuccess)
             {
-                case 1: ShowBikesTricicles(); break;
-                case 2: ShowCar(); break;
-                case 3: ShowPickupTruck(); break;
-                case 4: ShowAll(); break;
-                default: break;
+                switch (option)
+                {
+                    case 1: ShowBikesTricicles(); break;
+                    case 2: ShowCar(); break;
+                    case 3: ShowPickupTruck(); break;
+                    case 4: ShowAll(); break;
+                    default: MenuScreen.PrintError(20, "Opção inexistente"); Start(); break;
+                }
+            }
+            else
+            {
+                MenuScreen.PrintError(17, "Opção inválida");
             }
         }
         private static void ShowBikesTricicles()
