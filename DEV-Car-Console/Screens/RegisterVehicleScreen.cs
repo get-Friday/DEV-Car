@@ -87,6 +87,14 @@ namespace DEV_Car_Console.Screens
                 return;
             }
 
+            // Verify if plate already exists
+
+            if (VerifyPlate(plate))
+            {
+                MenuScreen.PrintError(canvasSizeY, "Placa já existente");
+                return;
+            }
+
             // Instance vehicle
 
             ETypeVehicle type = ETypeVehicle.MotoTriciclo;
@@ -167,6 +175,14 @@ namespace DEV_Car_Console.Screens
                 )
             {
                 MenuScreen.PrintError(canvasSizeY, "Campo inválido");
+                return;
+            }
+
+            // Verify if plate already exists
+
+            if (VerifyPlate(plate))
+            {
+                MenuScreen.PrintError(canvasSizeY, "Placa já existente");
                 return;
             }
 
@@ -257,6 +273,14 @@ namespace DEV_Car_Console.Screens
                 return;
             }
 
+            // Verify if plate already exists
+
+            if (VerifyPlate(plate))
+            {
+                MenuScreen.PrintError(canvasSizeY, "Placa já existente");
+                return;
+            }
+
             // Instance vehicle
 
             ETypeVehicle type = ETypeVehicle.Caminhonete;
@@ -329,6 +353,12 @@ namespace DEV_Car_Console.Screens
             Console.SetCursorPosition(2, lastRow);
             Console.WriteLine("Pressione qualquer tecla para voltar");
             var option = Console.ReadLine();
+        }
+        private static bool VerifyPlate(string plate)
+        {
+            return VehiclesRepository.Vehicles
+                .Select(vehicle => vehicle.Plate)
+                .Contains(plate);
         }
     }
 }
