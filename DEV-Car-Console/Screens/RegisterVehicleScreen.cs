@@ -4,7 +4,7 @@ using DEV_Car_Console.Enum;
 
 namespace DEV_Car_Console.Screens
 {
-    public static class RegisterVehicleScreen
+    internal static class RegisterVehicleScreen
     {
         public static void Start()
         {

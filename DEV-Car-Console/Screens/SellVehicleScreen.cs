@@ -3,7 +3,7 @@ using DEV_Car_Console.Repository;
 
 namespace DEV_Car_Console.Screens
 {
-    public static class SellVehicleScreen
+    internal static class SellVehicleScreen
     {
         public static void Start()
         {

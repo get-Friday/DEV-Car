@@ -1,6 +1,6 @@
 ﻿namespace DEV_Car_Console.Screens
 {
-    public static class MenuScreen
+    internal static class MenuScreen
     {
         public static void Start()
         {

@@ -3,7 +3,7 @@ using DEV_Car_Console.Models;
 
 namespace DEV_Car_Console.Screens
 {
-    public static class AvailableVehiclesScreen
+    internal static class AvailableVehiclesScreen
     {
         public static void Start()
         {
