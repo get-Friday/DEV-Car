@@ -4,9 +4,9 @@ namespace DEV_Car_Console.Models
 {
     public class Car : Vehicle
     {
-        public int TotalDoors { get; set; }
-        public ETypeFuel FuelType { get; set; }
-        public int HorsePower { get; set; }
+        public int TotalDoors { get; private set; }
+        public ETypeFuel FuelType { get; private set; }
+        public int HorsePower { get; private set; }
         public Car(int totalDoors,
                    ETypeFuel fuelType,
                    int horsePower,

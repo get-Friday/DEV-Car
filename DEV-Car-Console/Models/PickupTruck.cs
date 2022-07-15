@@ -4,10 +4,10 @@ namespace DEV_Car_Console.Models
 {
     internal class PickupTruck : Vehicle
     {
-        public int TotalDoors { get; set; }
-        public int CargoSizeLiters { get; set; }
-        public int HorsePower { get; set; }
-        public ETypeFuel TypeFuel { get; set; }
+        public int TotalDoors { get; private set; }
+        public int CargoSizeLiters { get; private set; }
+        public int HorsePower { get; private set; }
+        public ETypeFuel TypeFuel { get; private set; }
         public PickupTruck(int totalDoors,
                            int cargoSizeLiters,
                            int horsePower,

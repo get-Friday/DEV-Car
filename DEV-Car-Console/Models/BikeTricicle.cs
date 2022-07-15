@@ -4,8 +4,8 @@ namespace DEV_Car_Console.Models
 {
     public class BikeTricicle : Vehicle
     {
-        public int Potency { get; set; }
-        public int QntWheels { get; set; }
+        public int Potency { get; private set; }
+        public int QntWheels { get; private set; }
         public BikeTricicle(int potency,
                             int qntWheels,
                             DateTime fabricationDate,

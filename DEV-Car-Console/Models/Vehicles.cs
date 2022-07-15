@@ -5,14 +5,14 @@ namespace DEV_Car_Console.Models
 {
     public class Vehicle
     {
-        public Guid FrameNumber { get; set; }
-        public DateTime FabricationDate { get; set; }
-        public string Name { get; set; }
-        public string Plate { get; set; }
-        public Decimal Value { get; set; }
-        public int? BuyerCPF { get; set; }
-        public EColors Color { get; set; }
-        public ETypeVehicle Type { get; set; }
+        public Guid FrameNumber { get; private set; }
+        public DateTime FabricationDate { get; private set; }
+        public string Name { get; private set; }
+        public string Plate { get; private set; }
+        public Decimal Value { get; private set; }
+        public int? BuyerCPF { get; private set; }
+        public EColors Color { get; private set; }
+        public ETypeVehicle Type { get; private set; }
         public Vehicle(DateTime fabricationDate,
                        string name,
                        string plate,
