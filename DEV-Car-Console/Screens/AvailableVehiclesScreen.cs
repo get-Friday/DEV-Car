@@ -3,9 +3,9 @@ using DEV_Car_Console.Models;
 
 namespace DEV_Car_Console.Screens
 {
-    public class AvailableVehiclesScreen
+    public static class AvailableVehiclesScreen
     {
-        public void Start()
+        public static void Start()
         {
             IEnumerable<Vehicle> query = VehiclesRepository.Vehicles.Where(vehicle => vehicle.BuyerCPF == null);
             

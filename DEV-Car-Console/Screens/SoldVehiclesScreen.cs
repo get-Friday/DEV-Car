@@ -3,9 +3,9 @@ using DEV_Car_Console.Repository;
 
 namespace DEV_Car_Console.Screens
 {
-    public class SoldVehiclesScreen
+    public static class SoldVehiclesScreen
     {
-        public void Start()
+        public static void Start()
         {
             IEnumerable<Vehicle> query = VehiclesRepository.Vehicles
                 .Where(vehicle => vehicle.BuyerCPF != null);
@@ -24,12 +24,12 @@ namespace DEV_Car_Console.Screens
                 Console.ReadLine();
             }
         }
-        private void EmptyList()
+        private static void EmptyList()
         {
             MenuScreen.PrintMenu(10, 20, "Lista vazia :(");
             Console.ReadLine();
         }
-        private void PrintSold(IEnumerable<Vehicle> query, int canvasSize, string subHeaderText, int row)
+        private static void PrintSold(IEnumerable<Vehicle> query, int canvasSize, string subHeaderText, int row)
         {
             MenuScreen.PrintMenu(canvasSize, 92, subHeaderText);
 
@@ -40,7 +40,7 @@ namespace DEV_Car_Console.Screens
                 row += 2;
             }
         }
-        private void MostLeastSold(int row)
+        private static void MostLeastSold(int row)
         {
             decimal highestPrice = VehiclesRepository.Vehicles
                 .Where(vehicle => vehicle.BuyerCPF != null)

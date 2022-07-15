@@ -4,9 +4,9 @@ using DEV_Car_Console.Enum;
 
 namespace DEV_Car_Console.Screens
 {
-    public class ShowVehiclesScreen
+    public static class ShowVehiclesScreen
     {
-        public void Start()
+        public static void Start()
         {
             string subHeaderText = "Listar veículos";
             string[] menuOptions = { 
@@ -28,7 +28,7 @@ namespace DEV_Car_Console.Screens
                 default: break;
             }
         }
-        private void ShowBikesTricicles()
+        private static void ShowBikesTricicles()
         {
             IEnumerable<Vehicle> query = VehiclesRepository.Vehicles
                 .ToList()
@@ -50,7 +50,7 @@ namespace DEV_Car_Console.Screens
             Console.ReadLine();
 
         }
-        private void ShowCar()
+        private static void ShowCar()
         {
             IEnumerable<Vehicle> query = VehiclesRepository.Vehicles
                 .ToList()
@@ -71,7 +71,7 @@ namespace DEV_Car_Console.Screens
 
             Console.ReadLine();
         }
-        private void ShowPickupTruck()
+        private static void ShowPickupTruck()
         {
             IEnumerable<Vehicle> query = VehiclesRepository.Vehicles
                 .ToList()
@@ -92,7 +92,7 @@ namespace DEV_Car_Console.Screens
 
             Console.ReadLine();
         }
-        private void ShowAll()
+        private static void ShowAll()
         {
             string subHeaderText = $"{VehiclesRepository.Vehicles.Count} Veículos registrados";
             int canvasSize = VehiclesRepository.Vehicles.Count * 2 + 10;

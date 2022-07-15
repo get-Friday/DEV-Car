@@ -24,13 +24,13 @@
                 switch (option)
                 {
                     case 0: Environment.Exit(0); break;
-                    case 1: new RegisterVehicleScreen().Start(); Start(); break;
-                    case 2: new SellVehicleScreen().Start(); Start(); break;
-                    case 3: new ChangeVehicleScreen().Start(); Start(); break;
-                    case 4: new ShowVehiclesScreen().Start(); Start(); break;
-                    case 5: new AvailableVehiclesScreen().Start(); Start(); break;
-                    case 6: new SoldVehiclesScreen().Start(); Start(); break;
-                    case 7: new TransferHistoryScreen().Start(); Start(); break;
+                    case 1: RegisterVehicleScreen.Start(); Start(); break;
+                    case 2: SellVehicleScreen.Start(); Start(); break;
+                    case 3: ChangeVehicleScreen.Start(); Start(); break;
+                    case 4: ShowVehiclesScreen.Start(); Start(); break;
+                    case 5: AvailableVehiclesScreen.Start(); Start(); break;
+                    case 6: SoldVehiclesScreen.Start(); Start(); break;
+                    case 7: TransferHistoryScreen.Start(); Start(); break;
                     default: PrintError(20, "Opção inexistente"); Start(); break;
                 }
             }

@@ -3,9 +3,9 @@ using DEV_Car_Console.Repository;
 
 namespace DEV_Car_Console.Screens
 {
-    public class TransferHistoryScreen
+    public static class TransferHistoryScreen
     {
-        public void Start()
+        public static void Start()
         {
             string subHeaderText = "Histórico de transferências";
             int canvasSize = TransferHistoryRepository.TransferHistory.Count * 2 + 10;

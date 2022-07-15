@@ -4,9 +4,9 @@ using DEV_Car_Console.Enum;
 
 namespace DEV_Car_Console.Screens
 {
-    public class ChangeVehicleScreen
+    public static class ChangeVehicleScreen
     {
-        public void Start()
+        public static void Start()
         {
             string subHeaderText = "Alterar informação do veículo veículo";
 
@@ -63,7 +63,7 @@ namespace DEV_Car_Console.Screens
                 return;
             }
         }
-        private void PrintData(int sizeX, int sizeY, int positionY, string[] data)
+        private static void PrintData(int sizeX, int sizeY, int positionY, string[] data)
         {
             PrintPopup(sizeX, sizeY, positionY);
 
@@ -78,12 +78,12 @@ namespace DEV_Car_Console.Screens
                 row++;
             }
         }
-        private void PrintEnums(int sizeX, int sizeY, int positionY, string[] options)
+        private static void PrintEnums(int sizeX, int sizeY, int positionY, string[] options)
         {
             PrintPopup(sizeX, sizeY, positionY);
             PrintEnumOptions(options, positionY);
         }
-        private void PrintPopup(int sizeX, int sizeY, int positionY)
+        private static void PrintPopup(int sizeX, int sizeY, int positionY)
         {
             Console.SetCursorPosition(57, positionY);
             Console.Write("+");
@@ -106,7 +106,7 @@ namespace DEV_Car_Console.Screens
                 Console.Write("-");
             Console.Write("+");
         }
-        private void PrintEnumOptions(string[] EnumOptions, int positionY)
+        private static void PrintEnumOptions(string[] EnumOptions, int positionY)
         {
             Console.SetCursorPosition(59, positionY + 1);
             Console.WriteLine("Usar código de cada cor: ");
@@ -119,7 +119,7 @@ namespace DEV_Car_Console.Screens
                 row++;
             }
         }
-        private bool VerifyPlate(string plate)
+        private static bool VerifyPlate(string plate)
         {
             return VehiclesRepository.Vehicles
                 .Select(vehicle => vehicle.Plate)

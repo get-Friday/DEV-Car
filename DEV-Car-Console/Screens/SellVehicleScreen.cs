@@ -3,9 +3,9 @@ using DEV_Car_Console.Repository;
 
 namespace DEV_Car_Console.Screens
 {
-    public class SellVehicleScreen
+    public static class SellVehicleScreen
     {
-        public void Start()
+        public static void Start()
         {
             string subHeaderText = "Vender veículo";
 
@@ -33,13 +33,13 @@ namespace DEV_Car_Console.Screens
 
             SellVehicle(plate, BuyerCPF);
         }
-        private bool VerifyPlate(string plate)
+        private static bool VerifyPlate(string plate)
         {
             return VehiclesRepository.Vehicles
                 .Select(vehicle => vehicle.Plate)
                 .Contains(plate);
         }
-        private void SellVehicle(string plate, int buyerCPF)
+        private static void SellVehicle(string plate, int buyerCPF)
         {
             Vehicle query = VehiclesRepository.Vehicles
                 .ToList()

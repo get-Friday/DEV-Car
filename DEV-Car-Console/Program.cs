@@ -9,7 +9,7 @@ class Program
     static void Main(string[] args)
     {
         PopulateList();
-        new MenuScreen().Start();
+        MenuScreen.Start();
     }
     static void PopulateList()
     {

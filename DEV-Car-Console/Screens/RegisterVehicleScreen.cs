@@ -4,9 +4,9 @@ using DEV_Car_Console.Enum;
 
 namespace DEV_Car_Console.Screens
 {
-    public class RegisterVehicleScreen
+    public static class RegisterVehicleScreen
     {
-        public void Start()
+        public static void Start()
         {
             string subHeaderText = "Escolha tipo de veículo para registrar";
             string[] menuOptions = { "Moto/Triciclo", "Carro", "Caminhonete" };
