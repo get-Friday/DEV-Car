@@ -7,7 +7,7 @@ namespace DEV_Car_Tests
     {
         [Theory]
         [InlineData(EColors.Roxo)]
-        public void Test_Register_Pickup_Success(EColors color)
+        public void Test_Color_Pickup_Success(EColors color)
         {
             PickupTruck pickup = new(4, 100, 200, ETypeFuel.Diesel, DateTime.Parse("20/02/2022"), "CAMINHONETA", "TESTE1", 30M, color, ETypeVehicle.Caminhonete);
 
@@ -17,7 +17,7 @@ namespace DEV_Car_Tests
         [Theory]
         [InlineData(EColors.Branco)]
         [InlineData(EColors.Prata)]
-        public void Test_Register_Pickup_Failure(EColors color)
+        public void Test_Color_Pickup_Failure(EColors color)
         {
             PickupTruck pickup = new(4, 100, 200, ETypeFuel.Diesel, DateTime.Parse("20/02/2022"), "CAMINHONETA", "TESTE1", 30M, color, ETypeVehicle.Caminhonete);
 
