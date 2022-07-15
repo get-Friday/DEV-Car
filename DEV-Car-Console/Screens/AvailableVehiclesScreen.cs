@@ -13,7 +13,7 @@ namespace DEV_Car_Console.Screens
             int canvasSize = query.Count() * 2 + 10;
             int row = 7;
 
-            new MenuScreen().PrintMenu(canvasSize, 85, subHeaderText);
+            MenuScreen.PrintMenu(canvasSize, 85, subHeaderText);
 
             foreach (Vehicle vehicle in query)
             {

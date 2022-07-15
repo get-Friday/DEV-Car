@@ -9,7 +9,7 @@ namespace DEV_Car_Console.Screens
         {
             string subHeaderText = "Vender veículo";
 
-            new MenuScreen().PrintMenu(20, 40, subHeaderText);
+            MenuScreen.PrintMenu(20, 40, subHeaderText);
 
             Console.SetCursorPosition(2, 7);
             Console.WriteLine("Informe o CPF do comprador: ");
@@ -17,7 +17,7 @@ namespace DEV_Car_Console.Screens
             bool BuyerCPFParse = int.TryParse(Console.ReadLine(), out int BuyerCPF);
             if (!BuyerCPFParse)
             {
-                new MenuScreen().PrintError(20, "CPF Inválido");
+                MenuScreen.PrintError(20, "CPF Inválido");
                 return;
             }
 
@@ -27,7 +27,7 @@ namespace DEV_Car_Console.Screens
             string plate = Console.ReadLine();
             if (plate == null || !VerifyPlate(plate))
             {
-                new MenuScreen().PrintError(20, "Placa Inválida");
+                MenuScreen.PrintError(20, "Placa Inválida");
                 return;
             }
 

@@ -1,8 +1,8 @@
 ﻿namespace DEV_Car_Console.Screens
 {
-    public class MenuScreen
+    public static class MenuScreen
     {
-        public void Start()
+        public static void Start()
         {
             string subHeaderText = "Bem vindo!";
             string[] menuOptions = {
@@ -10,8 +10,8 @@
                 "Vender veículo",
                 "Alterar veículo",
                 "Listar veículos",
-                "Carros disponíveis",
-                "Carros vendidos",
+                "Veículos disponíveis",
+                "Veículos vendidos",
                 "Histórico de transferências"
             };
 
@@ -41,7 +41,7 @@
             }
 
         }
-        public void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions, string footerOption)
+        public static void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions, string footerOption)
         {
             Console.Clear();
             ConfigureCanvas(canvasSizeY, CanvasSizeX);
@@ -50,7 +50,7 @@
             ConfigureOptions(menuOptions);
             ConfigureFooter(canvasSizeY, footerOption);
         }
-        public void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions)
+        public static void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText, string[] menuOptions)
         {
             Console.Clear();
             ConfigureCanvas(canvasSizeY, CanvasSizeX);
@@ -58,20 +58,20 @@
             ConfigureSubHeader(SubHeaderText);
             ConfigureQuery(menuOptions);
         }
-        public void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText)
+        public static void PrintMenu(int canvasSizeY, int CanvasSizeX, string SubHeaderText)
         {
             Console.Clear();
             ConfigureCanvas(canvasSizeY, CanvasSizeX);
             PrintHeader();
             ConfigureSubHeader(SubHeaderText);
         }
-        public void PrintError(int positionY, string errorMessage)
+        public static void PrintError(int positionY, string errorMessage)
         {
             Console.SetCursorPosition(2, positionY);
             Console.WriteLine($"{errorMessage}. Pressione uma tecla para voltar");
             var s = Console.ReadLine();
         }
-        private void ConfigureCanvas(int sizeY, int sizeX)
+        private static void ConfigureCanvas(int sizeY, int sizeX)
         {
             PrintHorizontalLine(sizeX);
             for (int i = 0; i < sizeY; i++)
@@ -86,7 +86,7 @@
             }
             PrintHorizontalLine(sizeX);
         }
-        private void PrintHorizontalLine(int size)
+        private static void PrintHorizontalLine(int size)
         {
             Console.Write("+");
 
@@ -96,19 +96,19 @@
             Console.Write("+");
             Console.Write(Environment.NewLine);
         }
-        private void PrintHeader()
+        private static void PrintHeader()
         {
             Console.SetCursorPosition(2, 2);
             Console.WriteLine("DEV Car");
             Console.SetCursorPosition(2, 3);
             Console.WriteLine("=================");
         }
-        private void ConfigureSubHeader(string text)
+        private static void ConfigureSubHeader(string text)
         {
             Console.SetCursorPosition(2, 5);
             Console.WriteLine(text);
         }
-        private void ConfigureOptions(string[] options)
+        private static void ConfigureOptions(string[] options)
         {
             int row = 7;
             for (int i = 0; i < options.Length; i++)
@@ -118,7 +118,7 @@
                 row++;
             }
         }
-        private void ConfigureQuery(string[] options)
+        private static void ConfigureQuery(string[] options)
         {
             int row = 7;
             for (int i = 0; i < options.Length; i++)
@@ -128,7 +128,7 @@
                 row += 2;
             }
         }
-        private void ConfigureFooter(int lastRow, string option)
+        private static void ConfigureFooter(int lastRow, string option)
         {
             Console.SetCursorPosition(2, lastRow - 3);
             Console.WriteLine($"0 - {option}");

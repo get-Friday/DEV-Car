@@ -10,7 +10,7 @@ namespace DEV_Car_Console.Screens
         {
             string subHeaderText = "Alterar informação do veículo veículo";
 
-            new MenuScreen().PrintMenu(20, 55, subHeaderText);
+            MenuScreen.PrintMenu(20, 55, subHeaderText);
 
             Console.SetCursorPosition(2, 7);
             Console.WriteLine("Informe placa do veículo a alterar:");
@@ -18,7 +18,7 @@ namespace DEV_Car_Console.Screens
             string plate = Console.ReadLine();
             if (plate == null)
             {
-                new MenuScreen().PrintError(20, "Placa inválida");
+                MenuScreen.PrintError(20, "Placa inválida");
                 return;
             }
             
@@ -40,7 +40,7 @@ namespace DEV_Car_Console.Screens
                 bool valueParse = decimal.TryParse(Console.ReadLine(), out Decimal value);
                 if (!valueParse || value == 0)
                 {
-                    new MenuScreen().PrintError(20, "Valor inválido");
+                    MenuScreen.PrintError(20, "Valor inválido");
                     return;
                 }
 
@@ -51,7 +51,7 @@ namespace DEV_Car_Console.Screens
                 bool colorParse = EColors.TryParse<EColors>(Console.ReadLine(), out EColors color);
                 if (!colorParse || (query.Type == ETypeVehicle.Caminhonete && (int)color != 5) || ((int) color < 0 || (int) color > 5))
                 {
-                    new MenuScreen().PrintError(20, "Cor inválida");
+                    MenuScreen.PrintError(20, "Cor inválida");
                     return;
                 }
 
@@ -59,7 +59,7 @@ namespace DEV_Car_Console.Screens
             }
             else
             {
-                new MenuScreen().PrintError(20, "Placa inexistênte");
+                MenuScreen.PrintError(20, "Placa inexistênte");
                 return;
             }
         }

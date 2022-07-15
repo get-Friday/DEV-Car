@@ -11,7 +11,7 @@ namespace DEV_Car_Console.Screens
             int canvasSize = TransferHistoryRepository.TransferHistory.Count * 2 + 10;
             int row = 7;
 
-            new MenuScreen().PrintMenu(canvasSize, 110, subHeaderText);
+            MenuScreen.PrintMenu(canvasSize, 110, subHeaderText);
 
             foreach (Financial history in TransferHistoryRepository.TransferHistory)
             {
