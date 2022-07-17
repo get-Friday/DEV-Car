@@ -21,8 +21,7 @@ namespace DEV_Car_Tests
         {
             PickupTruck pickup = new(4, 100, 200, ETypeFuel.Diesel, DateTime.Parse("20/02/2022"), "CAMINHONETA", "TESTE1", 30M, color, ETypeVehicle.Caminhonete);
 
-            bool isValid = pickup.IsValid();
-            Assert.True(isValid);
+            Assert.True(pickup.IsValid());
         }
     }
 }
