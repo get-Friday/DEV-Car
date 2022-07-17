@@ -13,7 +13,7 @@ namespace DEV_Car_Console.Screens
             string subHeaderText = "Veículos vendidos";
             int row = 7;
 
-            if (query.Count() == 0)
+            if (!query.Any())
             {
                 EmptyList();
             }
