@@ -20,7 +20,7 @@ namespace DEV_Car_Tests
         {
             PickupTruck pickup = new(4, 2903, 288, fuelType, DateTime.Parse("06/06/2006"), "CAMINHONETA", "PLACA01", 49620.0M, EColors.Roxo, ETypeVehicle.Caminhonete);
 
-            Assert.True(pickup.IsValid());
+            Assert.False(pickup.IsValid());
         }
     }
 }
